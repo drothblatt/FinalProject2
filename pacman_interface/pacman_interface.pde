@@ -1,6 +1,8 @@
 
 Pacman pacman;
-boolean keyUp, keyDown, keyLeft, ketRight, keySpace, keySpaceReleased;
+Ghost blinky, pinky, inky, clyde; 
+
+boolean keyUp, keyDown, keyLeft, keyRight, keySpace, keySpaceReleased;
 PImage map; 
 
 int xPos= -50;
@@ -8,11 +10,20 @@ float start=0.785;
 float stop =5.497;
 float incr = .03 ;
 
+final color RED = color(255, 0, 0);
+final color BLUE = color(0, 0, 255);
+final color PINK = color(255, 51, 255);
+final color ORANGE = color(255, 128, 0);
+
 void setup(){
    size(800,800);
    background(0);
    map = loadImage("map.jpg");
-   pacman = new Pacman(width/2.0 - 63, height/2.0 + 14);
+   pacman = new Pacman(width/2.0 - 63.5, height/2.0 + 14);
+   blinky = new Ghost(300, height/2.0, RED);
+   pinky = new Ghost(330, height/2.0, PINK);
+   inky = new Ghost(350, height/2.0, BLUE);
+   clyde = new Ghost(380, height/2.0, ORANGE);
 }
 
 void draw(){
@@ -25,31 +36,79 @@ void draw(){
   
 void processKeys() {
   if (keyUp) {
-    pacman.setY(pacman.getY()-2.0);
+    pacman.setY(pacman.getY()- 2.5);
+  }
+  if (keyDown) {
+    pacman.setY(pacman.getY() + 2.5);
+  } 
+  if (keyLeft) {
+    pacman.setX(pacman.getX() - 2.5);
+  }
+  if (keyRight) {
+    pacman.setX(pacman.getX() + 2.5);
   }
   if (keySpace && keySpaceReleased) {
     keySpaceReleased = false; 
-    //don't do this again until you release it
-    //player.randomColor();
+    pacman.randomColor();
   }
 }
 
 void keyReleased() {
-  if (keyCode == 32) {//space
+  if (keyCode == 32) { // SPACE
     keySpace = false;
     keySpaceReleased = true;
   }
-  if (keyCode == 38) {//up
+  if (keyCode == 38) { // UP
     keyUp = false;
+  }
+  if (keyCode == 40) { // DOWN 
+    keyDown = false;
+  }
+  if (keyCode == 37) { // LEFT
+    keyLeft = false;
+  }
+  if (keyCode == 39) { // RIGHT
+    keyRight = false;
   }
 }
 
 void keyPressed() {
-  if (keyCode == 32) {//space\
+  print (keyCode + " " + "\n");
+  if (keyCode == 32) { // SPACE
     keySpace = true;
+    keyUp = false;
+    keyDown = false;
+    keyLeft = false;
+    keyRight = false;
   }
-  if (keyCode == 38) {//up
+  if (keyCode == 38) { // UP
     keyUp = true;
+    keySpace = false;
+    keyDown = false;
+    keyLeft = false;
+    keyRight = false;
+  }
+  if (keyCode == 40) { // DOWN 
+    keyDown = true;
+    keySpace = false;
+    keyUp = false;
+    keyLeft = false;
+    keyRight = false;
+  }
+  if (keyCode == 37) { // LEFT
+    keyLeft = true;
+    keySpace = false;
+    keyUp = false;
+    keyDown = false;
+    keyRight = false;
+  }
+  if (keyCode == 39) { // RIGHT
+    keyRight = true;
+    keyLeft = false;
+    keySpace = false;
+    keyUp = false;
+    keyDown = false;
+
   }
 }
     
