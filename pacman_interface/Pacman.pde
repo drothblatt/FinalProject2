@@ -25,8 +25,7 @@ class Pacman {
   public void draw() {
     stroke(0);
     fill(c);
-    ellipse(x, y, r*2, r*2);
-    
+    ellipse(x, y, r*2, r*2);    
   }
 
   public float getX() {
