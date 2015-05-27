@@ -16,7 +16,7 @@ final color PINK = color(255, 51, 255);
 final color ORANGE = color(255, 128, 0);
 
 void setup(){
-   size(800,800);
+   size(650,750);
    background(0);
    map = loadImage("map.jpg");
    pacman = new Pacman(width/2.0 - 63.5, height/2.0 + 14);
@@ -32,6 +32,14 @@ void draw(){
   pacman.draw();
   fill(0);
   processKeys();
+  
+  stroke(255);
+  for (int i = 20; i < 620; i += 20){
+     line(i, 20, i, 580);
+  }
+  for (int j = 20; j < 580; j += 20){
+     line(20, j, 640, j);
+  }
 }
   
 void processKeys() {
