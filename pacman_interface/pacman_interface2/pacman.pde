@@ -1,9 +1,5 @@
 class Pacman {
   
-  float start=0.785;
-  float stop =5.497;
-  float incr = .03 ;
-  
   int dir = 0;
   
   private float x, y;
@@ -18,9 +14,6 @@ class Pacman {
     this.y = y;
     c = color(255, 204, 0);
   } 
-  public void randomColor() {
-    c = color(random(255), random(255), random(255));
-  }
   
   public void draw() {
     stroke(0);

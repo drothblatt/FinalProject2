@@ -65,16 +65,16 @@ void draw(){
   
 void processKeys() {
   if (keyUp) {
-    pacman.setY(pacman.getY()- 2);
+    pacman.setY(pacman.getY()- 1);
   }
   if (keyDown) {
-    pacman.setY(pacman.getY() + 2);
+    pacman.setY(pacman.getY() + 1);
   } 
   if (keyLeft) {
-    pacman.setX(pacman.getX() - 2);
+    pacman.setX(pacman.getX() - 1);
   }
   if (keyRight) {
-    pacman.setX(pacman.getX() + 2);
+    pacman.setX(pacman.getX() + 1);
   }
   if (keySpace && keySpaceReleased) {
     keySpaceReleased = false; 
