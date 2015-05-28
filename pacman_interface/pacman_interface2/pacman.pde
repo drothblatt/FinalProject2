@@ -29,6 +29,7 @@ class Pacman {
   }
 
   public void move(){
+    if (inBounds(x,y)){
      if ( dir==1 ){
        y = y - 2.5;
      } 
@@ -41,6 +42,24 @@ class Pacman {
      if ( dir == 4 ){
        x = x +2.5;
      }
+    }
+  }
+  
+  public boolean inBounds(float x, float y){
+    if (dir==1){
+        return (( y - 2.5 ) - 10)/20 >=1;
+    }else
+    if (dir==2){
+        return (( y + 2.5 ) - 10)/20<=31;
+    }else
+    if (dir==3){
+        return (( x - 2.5 ) - 10)/20>=1;
+    }else
+    if (dir==4){
+        return (( x + 2.5 ) - 10)/20<=28;
+    }else{
+      return false;
+    }
   }
   
   public int getScore(){
