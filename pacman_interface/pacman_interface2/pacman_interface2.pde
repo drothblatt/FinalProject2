@@ -11,6 +11,7 @@ void setup(){
    map = loadImage("map.jpg");   
    pacman = new Pacman(300, 370);
    nodeMap = new NodeMap();
+   System.out.println(nodeMap);
 }
 
 void draw(){

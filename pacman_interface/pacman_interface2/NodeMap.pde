@@ -5,23 +5,21 @@ class NodeMap {
   
   Node[][] nodeGrid;
   String[][] strGrid;
+  String[] lines;
   
   public NodeMap() {
     strGrid = new String[31][28];
     try {
-      Scanner sc = new Scanner(new File("grid.txt"));
-      for (int row = 0; sc.hasNextLine(); row++) {
-        for (int col = 0; sc.hasNext("x") || sc.hasNext(" "); col++) {
-          strGrid[row][col] = sc.next();
-        }
-      }
-    }catch (FileNotFoundException e) {
+      lines = loadStrings("grid.txt");
+      
+    }catch (Exception e) {
+      e.printStackTrace();
       System.out.println("File not found");
     }
   }
   
   public String toString() {
-    Arrays.toString(strGrid);
+    Arrays.toString(lines);
     return "";
   }
 }
