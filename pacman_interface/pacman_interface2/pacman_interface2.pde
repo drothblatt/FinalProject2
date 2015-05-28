@@ -18,7 +18,7 @@ void draw(){
   image(map, 20, 20);
   pacman.move();
   pacman.draw();
-  
+  theGrid();
   fill(0);
   stroke(255);
   
@@ -29,6 +29,16 @@ void draw(){
   for (int j = 20; j <= 640; j += 20){ // horizontally
      line(20, j, 580, j);
   }
+}
+
+void theGrid(){
+    for ( int i = 0 ; i <  nodeMap.strGrid[0].length; i ++){
+       for ( int j = 0 ; j < nodeMap.strGrid.length; j++ ){
+         if (nodeMap.strGrid[j][i]!=null){
+          text(nodeMap.strGrid[j][i],j*20,i*20);
+         }
+       }   
+    }
 }
 
 void keyPressed(){
