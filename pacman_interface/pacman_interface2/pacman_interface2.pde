@@ -1,6 +1,7 @@
 import java.util.*;
 
 Pacman pacman;
+NodeMap nodeMap;
 boolean keyUp, keyDown, keyLeft, keyRight, keySpace;
 PImage map;
 
@@ -9,6 +10,7 @@ void setup(){
    background(0);
    map = loadImage("map.jpg");   
    pacman = new Pacman(300, 370);
+   nodeMap = new NodeMap();
 }
 
 void draw(){
