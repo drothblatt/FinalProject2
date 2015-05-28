@@ -22,7 +22,7 @@ void setup(){
    size(650,750);
    background(0);
    map = loadImage("map.jpg");   
-   pacman = new Pacman(width/2.0 - 63.5, height/2.0 + 14);
+   pacman = new Pacman(300, 370);
    dots = new Dot[244];
    populateDots();
 
@@ -65,16 +65,16 @@ void draw(){
   
 void processKeys() {
   if (keyUp) {
-    pacman.setY(pacman.getY()- 1.5);
+    pacman.setY(pacman.getY()- 2);
   }
   if (keyDown) {
-    pacman.setY(pacman.getY() + 1.5);
+    pacman.setY(pacman.getY() + 2);
   } 
   if (keyLeft) {
-    pacman.setX(pacman.getX() - 1.5);
+    pacman.setX(pacman.getX() - 2);
   }
   if (keyRight) {
-    pacman.setX(pacman.getX() + 1.5);
+    pacman.setX(pacman.getX() + 2);
   }
   if (keySpace && keySpaceReleased) {
     keySpaceReleased = false; 
