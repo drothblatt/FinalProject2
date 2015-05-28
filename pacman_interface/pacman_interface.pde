@@ -1,8 +1,9 @@
+import java.util.*;
 
 Pacman pacman;
 Ghost blinky, pinky, inky, clyde; 
 Dot[] dots;
-Dot d1, d2, d3;
+Dot d1, d2, d3, d4;
 
 boolean keyUp, keyDown, keyLeft, keyRight, keySpace, keySpaceReleased;
 PImage map; 
@@ -22,9 +23,9 @@ void setup(){
    background(0);
    map = loadImage("map.jpg");   
    pacman = new Pacman(width/2.0 - 63.5, height/2.0 + 14);
-   d = new Dot(50,50);
-   
+   dots = new Dot[244];
    populateDots();
+
    
    /*
    blinky = new Ghost(300, height/2.0, RED);
@@ -42,9 +43,12 @@ void draw(){
   background(0);
   image(map, 20, 20);
   pacman.draw();
-  for (Dot d: dots){
-    d.draw();
+  for (int i = 0; i < dots.length; i++){
+    if (dots[i] != null){
+      (dots[i]).draw();
+    }
   }
+  
   fill(0);
   processKeys();
   
@@ -153,9 +157,18 @@ void populateDots(){
     Dot d = new Dot(x, 50.0);
     dots[i] = d;
     i++;
+  } 
+  for (float y = 70; y <= 110; y += 20){
+    dots[i] = new Dot(50, y);
+    dots[i+1] = new Dot(150, y);
+    dots[i+2] = new Dot(270, y);
+    dots[i+3] = new Dot(330, y);
+    dots[i+4] = new Dot(450, y);
+    dots[i+5] = new Dot(550, y);
+    i = i + 6;
   }
- 
-
+  
+  
 }
 
 

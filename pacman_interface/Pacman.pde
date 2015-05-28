@@ -9,11 +9,11 @@ class Pacman {
   public float r;
   private color c;
   private float dir;
-  
+  private int score; 
  
 
   public Pacman(float x, float y) {
-    r = 17;
+    r = 16;
     this.x = x;
     this.y = y;
     c = color(255, 204, 0);
@@ -34,6 +34,10 @@ class Pacman {
   public float getY() {
     return y;
   }
+  
+  public int getScore(){
+    return score;
+  }
 
   public void setX(float newx) {
     x = newx;
@@ -42,6 +46,9 @@ class Pacman {
     y = newy;
   }
   
+  public String toString(){
+     return ("Dot @ (" + x + "," + y + ")" ); 
+  }
 }
 
 
