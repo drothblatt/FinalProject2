@@ -18,6 +18,10 @@ class Dot{
     fill(255);
     ellipse(x, y, r, r);
   }
+  
+  public String toString(){
+     return ("Dot @ (" + x + "," + y + ")" ); 
+  }
 }
   
   

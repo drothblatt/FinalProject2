@@ -8,11 +8,6 @@ Dot d1, d2, d3, d4;
 boolean keyUp, keyDown, keyLeft, keyRight, keySpace, keySpaceReleased;
 PImage map; 
 
-int xPos= -50;
-float start=0.785;  
-float stop =5.497;
-float incr = .03 ;
-
 final color RED = color(255, 0, 0);
 final color BLUE = color(0, 0, 255);
 final color PINK = color(255, 51, 255);
@@ -42,16 +37,14 @@ void setup(){
 void draw(){
   background(0);
   image(map, 20, 20);
+  pacman.move();
   pacman.draw();
   for (int i = 0; i < dots.length; i++){
     if (dots[i] != null){
       (dots[i]).draw();
     }
   }
-  
-  fill(0);
-  processKeys();
-  
+  fill(0);  
   stroke(255);
   
   for (int i = 20; i <= 580; i += 20){ // vertically
@@ -62,84 +55,22 @@ void draw(){
      line(20, j, 580, j);
   }
 }
-  
-void processKeys() {
-  if (keyUp) {
-    pacman.setY(pacman.getY()- 1);
-  }
-  if (keyDown) {
-    pacman.setY(pacman.getY() + 1);
-  } 
-  if (keyLeft) {
-    pacman.setX(pacman.getX() - 1);
-  }
-  if (keyRight) {
-    pacman.setX(pacman.getX() + 1);
-  }
-  if (keySpace && keySpaceReleased) {
-    keySpaceReleased = false; 
-    pacman.randomColor();
-  }
-}
 
-void keyReleased() {
-  if (keyCode == 32) { // SPACE
-    keySpace = false;
-    keySpaceReleased = true;
-  }
-  if (keyCode == 38) { // UP
-    keyUp = false;
-  }
-  if (keyCode == 40) { // DOWN 
-    keyDown = false;
-  }
-  if (keyCode == 37) { // LEFT
-    keyLeft = false;
-  }
-  if (keyCode == 39) { // RIGHT
-    keyRight = false;
-  }
-}
 
-void keyPressed() {
-  print (keyCode + " " + "\n");
-  if (keyCode == 32) { // SPACE
-    keySpace = true;
-    keyUp = false;
-    keyDown = false;
-    keyLeft = false;
-    keyRight = false;
-  }
-  if (keyCode == 38) { // UP
-    keyUp = true;
-    keySpace = false;
-    keyDown = false;
-    keyLeft = false;
-    keyRight = false;
-  }
-  if (keyCode == 40) { // DOWN 
-    keyDown = true;
-    keySpace = false;
-    keyUp = false;
-    keyLeft = false;
-    keyRight = false;
-  }
-  if (keyCode == 37) { // LEFT
-    keyLeft = true;
-    keySpace = false;
-    keyUp = false;
-    keyDown = false;
-    keyRight = false;
-  }
-  if (keyCode == 39) { // RIGHT
-    keyRight = true;
-    keyLeft = false;
-    keySpace = false;
-    keyUp = false;
-    keyDown = false;
-
-  }
-}
+void keyPressed(){
+    if (keyCode==38){
+        pacman.setDirection(1);//up        
+    }
+    if (keyCode==40){
+        pacman.setDirection(2);//down        
+    }
+    if (keyCode==37){
+        pacman.setDirection(3);//left        
+    }
+    if (keyCode==39){
+        pacman.setDirection(4);//right        
+    }
+}  
 
 void mousePressed(){
   print( "(" + mouseX + "," + mouseY + ")" );
