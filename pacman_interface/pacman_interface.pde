@@ -37,13 +37,15 @@ void setup(){
 void draw(){
   background(0);
   image(map, 20, 20);
-  pacman.move();
-  pacman.draw();
   for (int i = 0; i < dots.length; i++){
     if (dots[i] != null){
       (dots[i]).draw();
     }
   }
+  pacman.move();
+  pacman.draw();
+  
+  // OUR GRID LINES //
   fill(0);  
   stroke(255);
   
@@ -54,6 +56,7 @@ void draw(){
   for (int j = 20; j <= 640; j += 20){ // horizontally
      line(20, j, 580, j);
   }
+  // end //
 }
 
 
