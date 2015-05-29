@@ -29,4 +29,8 @@ class Node {
     up = newUp;
   }
   
+  public String toString() {
+    return "(" + x + "," + y + ") ";
+  }
+  
 }
