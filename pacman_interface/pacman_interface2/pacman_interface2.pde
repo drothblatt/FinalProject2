@@ -16,27 +16,29 @@ void setup(){
 
 void draw(){
   background(0);
-  image(map, 20, 20);
+ // image(map, 20, 20);
   pacman.move();
   pacman.draw();
   theGrid();
   fill(0);
   stroke(255);
   
-  for (int i = 20; i <= 580; i += 20){ // vertically
+  /*for (int i = 20; i <= 580; i += 20){ // vertically
      line(i, 20, i, 640);
   }
     
   for (int j = 20; j <= 640; j += 20){ // horizontally
      line(20, j, 580, j);
-  }
+  }*/
 }
 
 void theGrid(){
-    for ( int i = 0 ; i <  nodeMap.strGrid[0].length; i ++){
+    for ( int i = 0 ; i <  nodeMap.strGrid[0].length; i++){
        for ( int j = 0 ; j < nodeMap.strGrid.length; j++ ){
          if (nodeMap.strGrid[j][i]!=null){
-          text(nodeMap.strGrid[j][i],j*20,i*20);
+           textSize(20);
+          text(nodeMap.strGrid[j][i],i*20+20,j*20+40);
+          fill(255, 255, 255);
          }
        }   
     }
