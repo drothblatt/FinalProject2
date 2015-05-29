@@ -1,13 +1,12 @@
 class Pacman {
   
-  private float dir = 0;
+  private float dir = 0; // DIRECTION VARIABLE (0, 
   private float arcChanges = 0;
-  private final float THREE_HALF_PI = HALF_PI + PI;
   private boolean closingMouth = true;
   
   private float x, y;
-  public float r;
-  private color c;
+  public final float r;
+  private final color c;
   private int score; 
  
 
@@ -22,14 +21,14 @@ class Pacman {
     noStroke();
     fill(c);
     
-    // DETERMINE PACMAN SHAPE //
-    if (dir == 0){
-      ellipse(x, y, r*2, r*2);
-    } else{
+    // PACMAN SHAPE //
+    if (dir > 0) {
       arc(x, y, r*2, r*2, PI/6 - arcChanges*(PI/24) + dir, (11*PI)/6 + arcChanges*(PI/24) + dir);
-    }
+    } else {
+      ellipse(x, y, r*2, r*2);
+    } 
     
-    // MOVING MOUTH CODE //  ** similar something i found on OpenProcessing, but my own version
+    // MOVING MOUTH //  ** similar something i found on OpenProcessing, but my own version
     if (closingMouth){
       arcChanges++;
       if (arcChanges == 4){
@@ -58,7 +57,7 @@ class Pacman {
        x = x - 2.5;
      }
      if ( dir == TWO_PI ){
-       x = x +2.5;
+       x = x + 2.5;
      }
     }
   }
@@ -82,6 +81,10 @@ class Pacman {
   
   public int getScore(){
     return score;
+  }
+  
+  public void setScore(int points){
+    score = points;
   }
 
   public float getX(){
