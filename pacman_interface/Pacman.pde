@@ -1,9 +1,9 @@
 class Pacman {
   
-  int dir = 0;
-  
-  final float THREE_HALF_PI = HALF_PI + PI;
-
+  private float dir = 0;
+  private float arcChanges = 0;
+  private final float THREE_HALF_PI = HALF_PI + PI;
+  private boolean closingMouth = true;
   
   private float x, y;
   public float r;
@@ -19,52 +19,61 @@ class Pacman {
   } 
   
   public void draw() {
-    stroke(0);
+    noStroke();
     fill(c);
-    //ellipse(x, y, r*2, r*2);  
-    if (dir == 1){
-       arc(x, y, r*2, r*2, HALF_PI + PI/3, HALF_PI - PI/3); 
     
-    } else if (dir == 2) {
-       arc(x, y, r*2, r*2, THREE_HALF_PI - PI/3,
-       THREE_HALF_PI + PI/3); 
-
-    } else if (dir == 3) {
-       arc(x, y, r*2, r*2, PI - PI/3, PI + PI/3); 
-
-    } else if (dir == 4) {
-       arc(x, y, r*2, r*2, PI/3, -PI/3); 
-    }  
+    // DETERMINE PACMAN SHAPE //
+    if (dir == 0){
+      ellipse(x, y, r*2, r*2);
+    } else{
+      arc(x, y, r*2, r*2, PI/6 - arcChanges*(PI/24) + dir, (11*PI)/6 + arcChanges*(PI/24) + dir);
+    }
+    
+    // MOVING MOUTH CODE // 
+    if (closingMouth){
+      arcChanges++;
+      if (arcChanges == 4){
+        closingMouth = false;
+      }
+    } else {
+      arcChanges--;
+      if (arcChanges == 0){
+        closingMouth = true;
+      }
+    }
+    
+    // END OF MOVING MOUTH CODE // 
+    
   }
 
   public void move(){
     if (inBounds(x,y)){
-     if ( dir == 1 ){
+     if ( dir == 3*HALF_PI ){
        y = y - 2.5;
      } 
-     if ( dir == 2 ){
+     if ( dir == HALF_PI ){
        y = y + 2.5;
      }
-     if ( dir == 3 ){
+     if ( dir == PI ){
        x = x - 2.5;
      }
-     if ( dir == 4 ){
+     if ( dir == TWO_PI ){
        x = x +2.5;
      }
     }
   }
   
   public boolean inBounds(float x, float y){
-    if (dir==1){
+    if (dir== 3*HALF_PI){
         return (( y - 2.5 ) - 10)/20 >=1;
     }else
-    if (dir==2){
+    if (dir== HALF_PI){
         return (( y + 2.5 ) - 10)/20<=31;
     }else
-    if (dir==3){
+    if (dir== PI){
         return (( x - 2.5 ) - 10)/20>=1;
     }else
-    if (dir==4){
+    if (dir== TWO_PI){
         return (( x + 2.5 ) - 10)/20<=28;
     }else{
       return false;
@@ -79,11 +88,11 @@ class Pacman {
      return x; 
   }
   
-    public float getY(){
+  public float getY(){
      return y; 
     }
   
-  public void setDirection(int i){
+  public void setDirection(float i){
       dir = i;
   }
   

@@ -16,6 +16,7 @@ final color ORANGE = color(255, 128, 0);
 void setup(){
    size(650,750);
    background(0);
+   smooth();
    map = loadImage("map.jpg");   
    pacman = new Pacman(300, 370);
    dots = new Dot[244];
@@ -36,6 +37,7 @@ void setup(){
 
 void draw(){
   background(0);
+  smooth();
   image(map, 20, 20);
   for (int i = 0; i < dots.length; i++){
     if (dots[i] != null){
@@ -62,16 +64,16 @@ void draw(){
 
 void keyPressed(){
     if (keyCode==38){
-        pacman.setDirection(1);//up        
+        pacman.setDirection(3*HALF_PI);//up        
     }
     if (keyCode==40){
-        pacman.setDirection(2);//down        
+        pacman.setDirection(HALF_PI);//down        
     }
     if (keyCode==37){
-        pacman.setDirection(3);//left        
+        pacman.setDirection(PI);//left        
     }
     if (keyCode==39){
-        pacman.setDirection(4);//right        
+        pacman.setDirection(TWO_PI);//right        
     }
 }  
 
