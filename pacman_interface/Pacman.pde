@@ -29,7 +29,7 @@ class Pacman {
       arc(x, y, r*2, r*2, PI/6 - arcChanges*(PI/24) + dir, (11*PI)/6 + arcChanges*(PI/24) + dir);
     }
     
-    // MOVING MOUTH CODE // 
+    // MOVING MOUTH CODE //  ** similar something i found on OpenProcessing, but my own version
     if (closingMouth){
       arcChanges++;
       if (arcChanges == 4){
