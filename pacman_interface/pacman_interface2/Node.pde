@@ -8,6 +8,13 @@ class Node {
     y = ycor;
   }
   
+  void draw(){
+    fill(255);
+    smooth();
+    ellipse(x, y, 3, 3);
+  }
+  
+  
   public int getX() {return x;}
   public int getY() {return y;}
   

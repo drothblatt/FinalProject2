@@ -23,6 +23,14 @@ void draw(){
   fill(0);
   stroke(255);
   
+  for (int i = 0; i < 31; i++ ){
+    for (int j = 0; j < 28; j++ ){
+      if (nodeMap.nodeGrid[i][j] != null){
+        (nodeMap.nodeGrid[i][j]).draw();
+      }
+    }
+  }
+  
   /*for (int i = 20; i <= 580; i += 20){ // vertically
      line(i, 20, i, 640);
   }

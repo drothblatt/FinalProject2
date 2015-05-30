@@ -68,4 +68,10 @@ class NodeMap {
       }
     }
   }
+  
+  public Node[][] getNodeGrid(){
+    return nodeGrid; 
+  }
+  
+  
 }
