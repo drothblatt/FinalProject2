@@ -2,16 +2,35 @@ class Node {
   
   private Node right, left, down, up;
   private int x, y;
+  boolean hasDot;
+  boolean hasBigDot;
   
   public Node(int xcor, int ycor) {
     x = xcor;
     y = ycor;
+    hasDot=true;
+    
+    if ( (xcor-30)/20 == 1 && (ycor-30)/20 == 3 ){
+      hasBigDot=true;
+    }else if ( (xcor-30)/20 == 1 && (ycor-30)/20 == 23 ){
+      hasBigDot=true;
+    }else if ( (xcor-30)/20 == 26 && (ycor-30)/20 == 3 ){
+      hasBigDot=true;
+    }else if ( (xcor-30)/20 == 26 && (ycor-30)/20 == 23 ){
+      hasBigDot=true;
+    }else{
+      hasBigDot=false;
+    }
   }
   
   void draw(){
     fill(255);
     smooth();
-    ellipse(x, y, 3, 3);
+    if ( hasBigDot ){
+      ellipse(x, y, 8, 8);
+    }else{
+      ellipse(x, y, 3, 3);
+    }
   }
   
   
@@ -37,7 +56,14 @@ class Node {
   }
   
   public String toString() {
-    return "(" + x + "," + y + ") ";
+    return "(" + (x-30)/20 + "," + (y-30)/20 + ") ";
   }
   
+  public boolean hasDot(){
+    return hasDot;
+  }
+  
+  public boolean hasBigDot(){
+    return hasBigDot;
+  }
 }

@@ -17,7 +17,9 @@ class NodeMap {
     String out = "";
     for (int i = 0; i < nodeGrid.length; i++) {
       for (int j = 0; j < nodeGrid[0].length; j++) {
+        if ( nodeGrid[i][j]!=null){
         out += nodeGrid[i][j];
+        }
       }
       out += "\n";
     }
@@ -43,7 +45,6 @@ class NodeMap {
     for (int i = 0; i < strGrid.length; i++) {
       for (int j = 0; j < strGrid[0].length; j++) {
         if (! strGrid[i][j].equals("x")) {
-          System.out.println(strGrid[i][j]);
           nodeGrid[i][j] = new Node(j*20+30, i*20+30);
         }
       }

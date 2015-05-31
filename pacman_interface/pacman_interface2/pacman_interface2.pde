@@ -16,10 +16,10 @@ void setup(){
 
 void draw(){
   background(0);
- // image(map, 20, 20);
+  image(map, 20, 20);
   pacman.move();
   pacman.draw();
-  theGrid();
+  //theGrid();
   fill(0);
   stroke(255);
   
