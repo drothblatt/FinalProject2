@@ -17,12 +17,7 @@ void setup(){
 void draw(){
   background(0);
   image(map, 20, 20);
-  pacman.move();
-  pacman.draw();
-  //theGrid();
-  fill(0);
-  stroke(255);
-  
+  // DOTS // 
   for (int i = 0; i < 31; i++ ){
     for (int j = 0; j < 28; j++ ){
       if (nodeMap.nodeGrid[i][j] != null){
@@ -31,20 +26,29 @@ void draw(){
     }
   }
   
-  /*for (int i = 20; i <= 580; i += 20){ // vertically
+  // PACMAN // 
+  pacman.move();
+  pacman.draw();
+  //theGrid();
+  
+  // GRID // 
+  
+  fill(0);
+  stroke(255);
+  for (int i = 20; i <= 580; i += 20){ // vertically
      line(i, 20, i, 640);
   }
     
   for (int j = 20; j <= 640; j += 20){ // horizontally
      line(20, j, 580, j);
-  }*/
+  }
 }
 
 void theGrid(){
     for ( int i = 0 ; i <  nodeMap.strGrid[0].length; i++){
        for ( int j = 0 ; j < nodeMap.strGrid.length; j++ ){
          if (nodeMap.strGrid[j][i]!=null){
-           textSize(20);
+          textSize(20);
           text(nodeMap.strGrid[j][i],i*20+20,j*20+40);
           fill(255, 255, 255);
          }
@@ -54,16 +58,16 @@ void theGrid(){
 
 void keyPressed(){
     if (keyCode==38){
-        pacman.setDirection(1);//up        
+        pacman.setDirection( 3*HALF_PI );//up        
     }
     if (keyCode==40){
-        pacman.setDirection(2);//down        
+        pacman.setDirection( HALF_PI);//down        
     }
     if (keyCode==37){
-        pacman.setDirection(3);//left        
+        pacman.setDirection( PI );//left        
     }
     if (keyCode==39){
-        pacman.setDirection(4);//right        
+        pacman.setDirection( TWO_PI );//right        
     }
 }  
 
