@@ -30,6 +30,10 @@ class Pacman {
     noStroke();
     fill(c);
     
+    if (nextDir == 0){
+      ellipse(x, y, r*2, r*2);
+    }
+    
     // PACMAN SHAPE //
     if (dir > 0) {
       arc(x, y, r*2, r*2, PI/6 - arcChanges*(PI/24) + dir, (11*PI)/6 + arcChanges*(PI/24) + dir);
