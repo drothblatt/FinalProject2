@@ -1,13 +1,20 @@
 class Pacman {
   
-  private float dir = 0; // DIRECTION VARIABLE (0, 
+  private float dir = 0, nextDir; // DIRECTION VARIABLE (0, 
   private float arcChanges = 0;
   private boolean closingMouth = true;
+  private NodeMap nodeMap;
+  private Node currNode;
   
   private float x, y;
   public final float r;
   private final color c;
-  private int score; 
+  private int score;
+ 
+  private static final float UP =  3*HALF_PI;
+  private static final float DOWN =  HALF_PI;
+  private static final float LEFT =  PI;
+  private static final float RIGHT =  TWO_PI;
  
 
   public Pacman(float x, float y) {
@@ -15,6 +22,8 @@ class Pacman {
     this.x = x;
     this.y = y;
     c = color(255, 204, 0);
+    nodeMap = new NodeMap();
+    currNode = nodeMap.nodeGrid[(int)y/20-1][(int)x/20-1];
   } 
   
   public void draw() {
@@ -28,7 +37,7 @@ class Pacman {
       ellipse(x, y, r*2, r*2);
     } 
     
-    // MOVING MOUTH //  ** similar something i found on OpenProcessing, but my own version
+    // MOVING MOUTH //  ** similar something I found on OpenProcessing, but my own version
     if (closingMouth){
       arcChanges++;
       if (arcChanges == 4){
@@ -46,20 +55,39 @@ class Pacman {
   }
 
   public void move(){
-    if (inBounds(x,y)){
-     if ( dir == 3*HALF_PI ){
-       y = y - 2.5;
-     } 
-     if ( dir == HALF_PI ){
-       y = y + 2.5;
-     }
-     if ( dir == PI ){
-       x = x - 2.5;
-     }
-     if ( dir == TWO_PI ){
-       x = x + 2.5;
-     }
+    //if (inBounds(x,y))
+    
+    if (nextDir == dir + PI || nextDir == dir - PI) {
+      dir = nextDir;
     }
+    if (currNode.getX() == x && currNode.getY() == y) {
+      if (nextDir == UP && currNode.getUp() != null) {
+        dir = UP;
+      }
+      if (nextDir == DOWN && currNode.getDown() != null) {
+        dir = DOWN;
+      }
+      if (nextDir == LEFT && currNode.getLeft() != null) {
+        dir = LEFT;
+      }
+      if (nextDir == RIGHT && currNode.getRight() != null) {
+        dir = RIGHT;
+      }
+    }
+    
+    if ( dir == UP && ((currNode.getUp() == null && currNode.getY() != y) || currNode.getUp() != null)){
+      y = y - 2.5;
+    } 
+    if ( dir == DOWN &&  ((currNode.getDown() == null && currNode.getY() != y) || currNode.getDown() != null)){
+      y = y + 2.5;
+    }
+    if ( dir == LEFT && ((currNode.getLeft() == null && currNode.getX() != x) || currNode.getLeft() != null)){
+      x = x - 2.5;
+    }
+    if ( dir == RIGHT && ((currNode.getRight() == null && currNode.getX() != x) || currNode.getRight() != null)){
+      x = x + 2.5;
+    }
+    
   }
   
   public boolean inBounds(float x, float y){
@@ -95,8 +123,15 @@ class Pacman {
      return y; 
     }
   
-  public void setDirection(float i){
-      dir = i;
+  public void setNextDirection(float i){
+    nextDir = i;
+  }
+  
+  public void updateCurrentNode() {
+    currNode = nodeMap.nodeGrid[(int)y/20-1][(int)x/20-1];
+    /*System.out.println(currNode);
+    System.out.println("(" + currNode.getX() + "," + currNode.getY() + ")");
+    System.out.println("(" + x + "," + y + ")");*/
   }
   
 }

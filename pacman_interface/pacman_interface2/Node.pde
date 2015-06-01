@@ -56,7 +56,7 @@ class Node {
   }
   
   public String toString() {
-    return "(" + (x-30)/20 + "," + (y-30)/20 + ") ";
+    return "(" + (y-30)/20 + "," + (x-30)/20 + ") ";
   }
   
   public boolean hasDot(){

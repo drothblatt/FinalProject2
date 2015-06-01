@@ -9,9 +9,9 @@ void setup(){
    size(650,750);
    background(0);
    map = loadImage("map.jpg");   
-   pacman = new Pacman(300, 370);
+   pacman = new Pacman(310, 370);
    nodeMap = new NodeMap();
-   System.out.println(nodeMap);
+   //System.out.println(nodeMap);
 }
 
 void draw(){
@@ -20,13 +20,14 @@ void draw(){
   // DOTS // 
   for (int i = 0; i < 31; i++ ){
     for (int j = 0; j < 28; j++ ){
-      if (nodeMap.nodeGrid[i][j] != null){
+      if (nodeMap.nodeGrid[i][j] != null && nodeMap.nodeGrid[i][j].hasDot()){
         (nodeMap.nodeGrid[i][j]).draw();
       }
     }
   }
   
   // PACMAN // 
+  pacman.updateCurrentNode();
   pacman.move();
   pacman.draw();
   //theGrid();
@@ -58,16 +59,16 @@ void theGrid(){
 
 void keyPressed(){
     if (keyCode==38){
-        pacman.setDirection( 3*HALF_PI );//up        
+        pacman.setNextDirection( 3*HALF_PI );//up        
     }
     if (keyCode==40){
-        pacman.setDirection( HALF_PI);//down        
+        pacman.setNextDirection( HALF_PI);//down        
     }
     if (keyCode==37){
-        pacman.setDirection( PI );//left        
+        pacman.setNextDirection( PI );//left        
     }
     if (keyCode==39){
-        pacman.setDirection( TWO_PI );//right        
+        pacman.setNextDirection( TWO_PI );//right        
     }
 }  
 

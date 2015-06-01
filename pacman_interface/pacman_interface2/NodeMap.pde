@@ -26,7 +26,7 @@ class NodeMap {
     return out;
   }
   
-  private void createStringGrid() {
+  private void createStringGrid() { // Loads the text file into a String 2d array
     try {
       lines = loadStrings("grid.txt");
       for ( int i = 0 ; i < lines.length ; i ++ ){
@@ -40,15 +40,17 @@ class NodeMap {
     }
   }
   
-  private void createNodeGrid() {
+  private void createNodeGrid() { // Uses the String 2d array to fill in a grid
     nodeGrid = new Node[31][28];
+    // Populate the node array
     for (int i = 0; i < strGrid.length; i++) {
       for (int j = 0; j < strGrid[0].length; j++) {
         if (! strGrid[i][j].equals("x")) {
-          nodeGrid[i][j] = new Node(j*20+30, i*20+30);
+          nodeGrid[i][j] = new Node(j*20+30, i*20+30); 
         }
       }
     }
+    // Connect nodes to their neighbors
     for (int i = 1; i < nodeGrid.length - 1; i++) {
       for (int j = 1; j < nodeGrid[0].length - 1; j++) {
         if (nodeGrid[i][j] != null) {
