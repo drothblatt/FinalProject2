@@ -28,8 +28,11 @@ class Node {
     smooth();
     if ( hasBigDot ){
       ellipse(x, y, 8, 8);
-    }else{
+    }else if ( hasDot ){
       ellipse(x, y, 3, 3);
+    }else{
+      fill(0);
+      ellipse(x, y, 8, 8);
     }
   }
   
@@ -65,5 +68,10 @@ class Node {
   
   public boolean hasBigDot(){
     return hasBigDot;
+  }
+  
+  public void removeDot() {
+    hasDot = false;
+    hasBigDot = false;
   }
 }

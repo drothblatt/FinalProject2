@@ -34,8 +34,8 @@ class Pacman {
     if (dir > 0) {
       arc(x, y, r*2, r*2, PI/6 - arcChanges*(PI/24) + dir, (11*PI)/6 + arcChanges*(PI/24) + dir);
     } else {
-      ellipse(x, y, r*2, r*2);
-    } 
+      arc(x, y, r*2, r*2, PI/6 + nextDir, (11*PI)/6 + nextDir);
+    }
     
     // MOVING MOUTH //  ** similar something I found on OpenProcessing, but my own version
     if (closingMouth){
@@ -78,16 +78,18 @@ class Pacman {
     if ( dir == UP && ((currNode.getUp() == null && currNode.getY() != y) || currNode.getUp() != null)){
       y = y - 2.5;
     } 
-    if ( dir == DOWN &&  ((currNode.getDown() == null && currNode.getY() != y) || currNode.getDown() != null)){
+    else if ( dir == DOWN &&  ((currNode.getDown() == null && currNode.getY() != y) || currNode.getDown() != null)){
       y = y + 2.5;
     }
-    if ( dir == LEFT && ((currNode.getLeft() == null && currNode.getX() != x) || currNode.getLeft() != null)){
+    else if ( dir == LEFT && ((currNode.getLeft() == null && currNode.getX() != x) || currNode.getLeft() != null)){
       x = x - 2.5;
     }
-    if ( dir == RIGHT && ((currNode.getRight() == null && currNode.getX() != x) || currNode.getRight() != null)){
+    else if ( dir == RIGHT && ((currNode.getRight() == null && currNode.getX() != x) || currNode.getRight() != null)){
       x = x + 2.5;
     }
-    
+    else {
+      dir = 0;
+    }
   }
   
   public boolean inBounds(float x, float y){
@@ -129,6 +131,7 @@ class Pacman {
   
   public void updateCurrentNode() {
     currNode = nodeMap.nodeGrid[(int)y/20-1][(int)x/20-1];
+    currNode.removeDot();
     /*System.out.println(currNode);
     System.out.println("(" + currNode.getX() + "," + currNode.getY() + ")");
     System.out.println("(" + x + "," + y + ")");*/

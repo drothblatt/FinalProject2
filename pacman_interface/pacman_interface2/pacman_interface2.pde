@@ -20,8 +20,8 @@ void draw(){
   // DOTS // 
   for (int i = 0; i < 31; i++ ){
     for (int j = 0; j < 28; j++ ){
-      if (nodeMap.nodeGrid[i][j] != null && nodeMap.nodeGrid[i][j].hasDot()){
-        (nodeMap.nodeGrid[i][j]).draw();
+      if (nodeMap.nodeGrid[i][j] != null){
+        nodeMap.nodeGrid[i][j].draw();
       }
     }
   }
