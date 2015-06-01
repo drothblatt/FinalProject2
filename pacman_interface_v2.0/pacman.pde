@@ -57,6 +57,12 @@ class Pacman {
   public void move(){
     //if (inBounds(x,y))
     
+    if (x == 40 && y == 310){
+       x = 560;
+    } else if (x == 560 && y == 310) {
+       x = 40;
+    }
+    
     if (nextDir == dir + PI || nextDir == dir - PI) {
       dir = nextDir;
     }
