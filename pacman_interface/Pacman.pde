@@ -31,10 +31,15 @@ class Pacman {
     fill(c);
     
     // PACMAN SHAPE //
+    
+    if (nextDir == 0){
+      ellipse(x, y, r*2, r*2);
+    }
+    
     if (dir > 0) {
       arc(x, y, r*2, r*2, PI/6 - arcChanges*(PI/24) + dir, (11*PI)/6 + arcChanges*(PI/24) + dir);
     } else {
-      ellipse(x, y, r*2, r*2);
+      arc(x, y, r*2, r*2, PI/6 + dir, (11*PI)/6 + dir);
     } 
     
     // MOVING MOUTH //  ** similar something I found on OpenProcessing, but my own version
