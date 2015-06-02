@@ -42,6 +42,8 @@ class Pacman {
       arc(x, y, r*2, r*2, PI/6 + nextDir, (11*PI)/6 + nextDir);
     } 
     
+    // END OF PACMAN SHAPE CODE //
+    
     // MOVING MOUTH //  ** similar something I found on OpenProcessing, but my own version
     if (closingMouth){
       arcChanges++;
