@@ -114,7 +114,6 @@ class Pacman {
     else {
       dir = 0;
     } 
-      System.out.println();
   }
   
   public boolean inBounds(float x, float y){

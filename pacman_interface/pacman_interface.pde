@@ -14,7 +14,7 @@ void setup(){
    background(0);
    map = loadImage("map.jpg");   
    nodeMap = new NodeMap();
-   pacman = new Pacman(310, 370, nodeMap);
+   pacman = new Pacman(310, 490, nodeMap);
    //System.out.println(nodeMap);
    minim = new Minim(this);
    player = minim.loadFile("Pacman Opening Song.mp3");

@@ -27,6 +27,14 @@ class Node {
       dotVal = 10;
       hasBigDot=false;
     }
+    
+    if ( ycor == 490 && ( xcor == 310 || xcor == 290 ) ){
+      hasDot=false;
+    }
+    
+    if ( ycor <= 410 && ycor >= 210 && xcor >= 170 && xcor <= 430){
+      hasDot=false; 
+    }
   }
   
   void draw(){
