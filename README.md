@@ -1,6 +1,9 @@
 # FinalProject2
 For our Final Project, we hope to utilize processing to create a version of Pacman that is very similar to the original. 
 
+<!DOCTYPE html>
+<html>
+
 	<b><u> SEE "WORKING_VERSION_1" FOR OUR FIRST WORKING VERSION. GO TO "pacman_interface.pde" and check it out. </u></b>
 	
 	<b> DEV LOG </b> 
@@ -18,3 +21,4 @@ For our Final Project, we hope to utilize processing to create a version of Pacm
   </tr>
 </table>
 
+</html>
