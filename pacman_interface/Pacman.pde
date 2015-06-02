@@ -80,7 +80,9 @@ class Pacman {
       dir = nextDir;
     }
     if (currNode.getX() == x && currNode.getY() == y) {
-      System.out.println("on it");
+      if (currNode.hasDot()){
+        score+=currNode.getVal();   
+      }
       currNode.setDot(false);
       if (nextDir == UP && currNode.getUp() != null) {
         dir = UP;

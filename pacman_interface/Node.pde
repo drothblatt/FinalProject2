@@ -4,6 +4,7 @@ class Node {
   private int x, y;
   boolean hasDot;
   boolean hasBigDot;
+  int dotVal;
   
   public Node(int xcor, int ycor) {
     x = xcor;
@@ -11,14 +12,19 @@ class Node {
     hasDot=true;
     
     if ( (xcor-30)/20 == 1 && (ycor-30)/20 == 3 ){
+      dotVal = 50;
       hasBigDot=true;
     }else if ( (xcor-30)/20 == 1 && (ycor-30)/20 == 23 ){
+      dotVal = 50;
       hasBigDot=true;
     }else if ( (xcor-30)/20 == 26 && (ycor-30)/20 == 3 ){
+      dotVal = 50;
       hasBigDot=true;
     }else if ( (xcor-30)/20 == 26 && (ycor-30)/20 == 23 ){
+      dotVal = 50;
       hasBigDot=true;
     }else{
+      dotVal = 10;
       hasBigDot=false;
     }
   }
@@ -69,5 +75,9 @@ class Node {
   
   public boolean hasBigDot(){
     return hasBigDot;
+  }
+  
+  public int getVal(){
+    return dotVal;
   }
 }
