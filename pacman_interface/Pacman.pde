@@ -1,6 +1,6 @@
 class Pacman {
   
-  private float dir = 0, nextDir; // DIRECTION VARIABLE (0, 
+  private float dir = 0, nextDir = 0; // DIRECTION VARIABLE (0, 
   private float arcChanges = 0;
   private boolean closingMouth = true;
   private NodeMap nodeMap;
@@ -29,7 +29,7 @@ class Pacman {
   public void draw() {
     noStroke();
     fill(c);
-    
+
     // PACMAN SHAPE //
     
     if (nextDir == 0){
@@ -38,8 +38,8 @@ class Pacman {
     
     if (dir > 0) {
       arc(x, y, r*2, r*2, PI/6 - arcChanges*(PI/24) + dir, (11*PI)/6 + arcChanges*(PI/24) + dir);
-    } else {
-      arc(x, y, r*2, r*2, PI/6 + dir, (11*PI)/6 + dir);
+    } else if (dir == 0) {
+      arc(x, y, r*2, r*2, PI/6 + nextDir, (11*PI)/6 + nextDir);
     } 
     
     // MOVING MOUTH //  ** similar something I found on OpenProcessing, but my own version
@@ -62,15 +62,16 @@ class Pacman {
   public void move(){
     //if (inBounds(x,y))
     
-    if (x == 40 && y == 310){
-       x = 560;
-    } else if (x == 560 && y == 310) {
-       x = 40;
+    if (x == 30 && y == 310){
+       x = 570;
+    } else if (x == 570 && y == 310) {
+       x = 30;
     }
     
     if (nextDir == dir + PI || nextDir == dir - PI) {
       dir = nextDir;
     }
+    
     if (currNode.getX() == x && currNode.getY() == y) {
       if (nextDir == UP && currNode.getUp() != null) {
         dir = UP;
@@ -83,22 +84,25 @@ class Pacman {
       }
       if (nextDir == RIGHT && currNode.getRight() != null) {
         dir = RIGHT;
-      }
+      } 
+ 
     }
     
     if ( dir == UP && ((currNode.getUp() == null && currNode.getY() != y) || currNode.getUp() != null)){
       y = y - 2.5;
     } 
-    if ( dir == DOWN &&  ((currNode.getDown() == null && currNode.getY() != y) || currNode.getDown() != null)){
+    else if ( dir == DOWN &&  ((currNode.getDown() == null && currNode.getY() != y) || currNode.getDown() != null)){
       y = y + 2.5;
     }
-    if ( dir == LEFT && ((currNode.getLeft() == null && currNode.getX() != x) || currNode.getLeft() != null)){
+    else if ( dir == LEFT && ((currNode.getLeft() == null && currNode.getX() != x) || currNode.getLeft() != null)){
       x = x - 2.5;
     }
-    if ( dir == RIGHT && ((currNode.getRight() == null && currNode.getX() != x) || currNode.getRight() != null)){
+    else if ( dir == RIGHT && ((currNode.getRight() == null && currNode.getX() != x) || currNode.getRight() != null)){
       x = x + 2.5;
     }
-    
+    else {
+      dir = 0;
+    } 
   }
   
   public boolean inBounds(float x, float y){

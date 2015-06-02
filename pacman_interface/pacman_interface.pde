@@ -72,3 +72,7 @@ void keyPressed(){
     }
 }  
 
+void mouseClicked(){
+  print( "(" + mouseX + "," + mouseY + ")" );
+}
+
