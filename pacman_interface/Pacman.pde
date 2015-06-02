@@ -3,7 +3,6 @@ class Pacman {
   private float dir = 0, nextDir = 0; // DIRECTION VARIABLE (0, 
   private float arcChanges = 0;
   private boolean closingMouth = true;
-  private NodeMap nodeMap;
   private Node currNode;
   
   private float x, y;
@@ -18,13 +17,12 @@ class Pacman {
   private static final float RIGHT =  TWO_PI;
  
 
-  public Pacman(float x, float y) {
+  public Pacman(float x, float y, NodeMap nodeMap) {
     r = 16;
     this.x = x;
     this.y = y;
     c = color(255, 204, 0);
-    nodeMap = new NodeMap();
-    currNode = nodeMap.nodeGrid[(int)y/20-1][(int)x/20-1];
+    currNode = nodeMap.nodeGrid[(int)y/20-10][(int)x/20-10];
     lives = 2;
   } 
   
@@ -81,8 +79,9 @@ class Pacman {
     if (nextDir == dir + PI || nextDir == dir - PI) {
       dir = nextDir;
     }
-    
     if (currNode.getX() == x && currNode.getY() == y) {
+      System.out.println("on it");
+      currNode.setDot(false);
       if (nextDir == UP && currNode.getUp() != null) {
         dir = UP;
       }
@@ -113,6 +112,7 @@ class Pacman {
     else {
       dir = 0;
     } 
+      System.out.println();
   }
   
   public boolean inBounds(float x, float y){
@@ -130,10 +130,6 @@ class Pacman {
     }else{
       return false;
     }
-  }
-  
-  public int getScore(){
-    return score;
   }
   
   public void setScore(int points){

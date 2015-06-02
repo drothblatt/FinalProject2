@@ -63,6 +63,10 @@ class Node {
     return hasDot;
   }
   
+  public void setDot(boolean b){
+    hasDot=b;
+  }
+  
   public boolean hasBigDot(){
     return hasBigDot;
   }
