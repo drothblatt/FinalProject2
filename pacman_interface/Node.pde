@@ -1,61 +1,73 @@
 class Node {
-  
+
   private Node right, left, down, up;
   private int x, y;
   boolean hasDot;
   boolean hasBigDot;
   int dotVal;
-  
+
   public Node(int xcor, int ycor) {
     x = xcor;
     y = ycor;
     hasDot=true;
-    
-    if ( (xcor-30)/20 == 1 && (ycor-30)/20 == 3 ){
+
+    if ( (xcor-30)/20 == 1 && (ycor-30)/20 == 3 ) {
       dotVal = 50;
       hasBigDot=true;
-    }else if ( (xcor-30)/20 == 1 && (ycor-30)/20 == 23 ){
+    } else if ( (xcor-30)/20 == 1 && (ycor-30)/20 == 23 ) {
       dotVal = 50;
       hasBigDot=true;
-    }else if ( (xcor-30)/20 == 26 && (ycor-30)/20 == 3 ){
+    } else if ( (xcor-30)/20 == 26 && (ycor-30)/20 == 3 ) {
       dotVal = 50;
       hasBigDot=true;
-    }else if ( (xcor-30)/20 == 26 && (ycor-30)/20 == 23 ){
+    } else if ( (xcor-30)/20 == 26 && (ycor-30)/20 == 23 ) {
       dotVal = 50;
       hasBigDot=true;
-    }else{
+    } else {
       dotVal = 10;
       hasBigDot=false;
     }
-    
-    if ( ycor == 490 && ( xcor == 310 || xcor == 290 ) ){
+
+    if ( ycor == 490 && ( xcor == 310 || xcor == 290 ) ) {
       hasDot=false;
     }
-    
-    if ( ycor <= 410 && ycor >= 210 && xcor >= 170 && xcor <= 430){
-      hasDot=false; 
+
+    if ( ycor <= 410 && ycor >= 210 && xcor >= 170 && xcor <= 430) {
+      hasDot=false;
     }
   }
-  
-  void draw(){
+
+  void draw() {
     fill(255);
     smooth();
-    if ( hasBigDot ){
+    if ( hasBigDot ) {
       ellipse(x, y, 8, 8);
-    }else{
+    } else {
       ellipse(x, y, 3, 3);
     }
   }
-  
-  
-  public int getX() {return x;}
-  public int getY() {return y;}
-  
-  public Node getRight() {return right;}
-  public Node getLeft() {return left;}
-  public Node getDown() {return down;}
-  public Node getUp() {return up;}
-  
+
+
+  public int getX() {
+    return x;
+  }
+  public int getY() {
+    return y;
+  }
+
+  public Node getRight() {
+    return right;
+  }
+  public Node getLeft() {
+    return left;
+  }
+  public Node getDown() {
+    return down;
+  }
+  public Node getUp() {
+    return up;
+  }
+
   public void setRight(Node newRight) {
     right = newRight;
   }
@@ -68,24 +80,25 @@ class Node {
   public void setUp(Node newUp) {
     up = newUp;
   }
-  
+
   public String toString() {
     return "(" + (y-30)/20 + "," + (x-30)/20 + ") ";
   }
-  
-  public boolean hasDot(){
+
+  public boolean hasDot() {
     return hasDot;
   }
-  
-  public void setDot(boolean b){
+
+  public void setDot(boolean b) {
     hasDot=b;
   }
-  
-  public boolean hasBigDot(){
+
+  public boolean hasBigDot() {
     return hasBigDot;
   }
-  
-  public int getVal(){
+
+  public int getVal() {
     return dotVal;
   }
 }
+
