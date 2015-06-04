@@ -18,7 +18,15 @@ void setup() {
   minim = new Minim(this);
   player = minim.loadFile("Pacman Opening Song.mp3");
   player.play();
-  //frameRate(40);
+  draw();
+  try {
+    Thread.sleep(3200);
+  }
+  catch(Exception e) {
+    System.out.println("nope");
+  }
+  player = minim.loadFile("Pacman Siren.mp3");
+  player.loop();
 }
 
 
