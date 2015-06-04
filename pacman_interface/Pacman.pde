@@ -1,3 +1,5 @@
+import java.util.*;
+import ddf.minim.*;
 class Pacman {
 
   private float dir = 0, nextDir = 0; // DIRECTION VARIABLE (0, 
@@ -15,7 +17,6 @@ class Pacman {
   private static final float DOWN =  HALF_PI;
   private static final float LEFT =  PI;
   private static final float RIGHT =  TWO_PI;
-
 
   public Pacman(float x, float y, NodeMap nodeMap) {
     r = 16;
@@ -67,8 +68,9 @@ class Pacman {
     text(score, 450, 680 );
   }
 
-  public void move() {
+  public boolean move() {
     //if (inBounds(x,y))
+    boolean ret = false;
     if (nextDir == dir + PI || nextDir == dir - PI) {
       dir = nextDir;
     }
@@ -76,6 +78,7 @@ class Pacman {
       if (currNode.hasDot()) {
         score+=currNode.getVal();   
         currNode.setDot(false);
+        ret = true;
       }
       if (nextDir == UP && currNode.getUp() != null) {
         dir = UP;
@@ -106,6 +109,7 @@ class Pacman {
     } else {
       dir = 0;
     }
+    return ret;
   }
 
   public boolean inBounds(float x, float y) {
@@ -139,6 +143,10 @@ class Pacman {
 
   public void setNextDirection(float i) {
     nextDir = i;
+  }
+
+  public void kill() {
+    lives--;
   }
 
   public void updateCurrentNode() {
