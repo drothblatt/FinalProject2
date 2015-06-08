@@ -24,3 +24,43 @@ abstract class Ghost {
   }
 }
 
+public class Blinky extends Ghost {
+
+  public Blinky(float x, float y, Pacman pm, NodeMap nm) {
+    super(x, y, color(255, 0, 0), pm, nm );
+  } 
+
+  public void move() {
+  }
+}
+
+public class Inky extends Ghost {
+
+  public Inky(float x, float y, Pacman pm, NodeMap nm) {
+    super(x, y, color(0, 0, 255), pm, nm );
+  } 
+
+  public void move() {
+  }
+}
+
+public class Clyde extends Ghost {
+
+  public Clyde(float x, float y, Pacman pm, NodeMap nm) {
+    super(x, y, color(255, 128, 0), pm, nm );
+  } 
+
+  public void move() {
+  }
+}
+
+public class Pinky extends Ghost {
+
+  public Pinky(float x, float y, Pacman pm, NodeMap nm) {
+    super(x, y, color(255, 200, 200), pm, nm );
+  } 
+
+  public void move() {
+  }
+}
+

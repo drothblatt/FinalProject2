@@ -28,12 +28,20 @@ class Node {
       hasBigDot=false;
     }
 
-    if ( ycor == 490 && ( xcor == 310 || xcor == 290 ) ) {
+    if ( ycor == 310 && ( xcor <= 130 || xcor >= 470 ) ) {
       hasDot=false;
     }
 
     if ( ycor <= 410 && ycor >= 210 && xcor >= 170 && xcor <= 430) {
       hasDot=false;
+    }
+    
+    if ( (xcor >= 30 && xcor <= 110) && (ycor >= 230 && ycor <= 390) ){
+      hasDot = false;
+    }
+    
+    if ( (xcor >= 490 && xcor <= 570) && (ycor >= 230 && ycor <= 390) ){
+      hasDot = false;
     }
   }
 

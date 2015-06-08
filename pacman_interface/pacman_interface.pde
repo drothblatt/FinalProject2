@@ -6,7 +6,7 @@ NodeMap nodeMap;
 PImage map;
 AudioPlayer player;
 AudioPlayer player2;
-Minim minim;
+Minim minim, minim2;
 int moves = 0;
 Ghost[] ghosts = { 
   new Blinky( 300, 251, pacman, nodeMap ), 
@@ -22,19 +22,21 @@ Ghost[] ghosts = {
     nodeMap = new NodeMap();
     pacman = new Pacman(310, 490, nodeMap);
     //System.out.println(nodeMap);
-    /*minim = new Minim(this);
-     player = minim.loadFile("Pacman Opening Song.mp3");
-     player.play();
-     draw();
-     try {
-     Thread.sleep(3800);
-     }
-     catch(Exception e) {
-     System.out.println("nope");
-     }
-     player = minim.loadFile("Pacman Siren.mp3");
-     player.loop();
-     frameRate(40);*/
+    minim = new Minim(this);
+    minim2 = new Minim(this);
+    player = minim.loadFile("Pacman Opening Song.mp3");
+    player2 = minim.loadFile("Pacman Waka Waka.mp3");
+    player.play();
+    draw();
+    try {
+      Thread.sleep(3800);
+    }
+    catch(Exception e) {
+      System.out.println("nope");
+    }
+    player = minim.loadFile("Pacman Siren.mp3");
+    player.loop();
+    frameRate(40);
   }
 
 
@@ -55,13 +57,12 @@ void draw() {
   }
   // PACMAN // 
   pacman.updateCurrentNode();
-  pacman.move();
-  /*
-    if ( moves % 2 == 0) {
-   player2 = minim.loadFile("Pacman Waka Waka.mp3");
-   player2.play();
-   }
-   }*/
+  if (pacman.move()) {
+
+    if ( moves % 8 == 0) {
+      player2.play();
+    }
+  }
   pacman.draw();
   //theGrid();
 
