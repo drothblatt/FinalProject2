@@ -43,6 +43,10 @@ class Node {
     if ( (xcor >= 490 && xcor <= 570) && (ycor >= 230 && ycor <= 390) ){
       hasDot = false;
     }
+    
+    if ( xcor == 310 && ycor == 490 ){
+      hasDot = false;
+    }
   }
 
   void draw() {
