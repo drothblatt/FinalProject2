@@ -23,6 +23,7 @@ Ghost[] ghosts = {
     nodeMap = new NodeMap();
     pacman = new Pacman(310, 490, nodeMap);
     //System.out.println(nodeMap);
+    /*
     minim = new Minim(this);
     minim2 = new Minim(this);
     player = minim.loadFile("Pacman Opening Song.mp3");
@@ -37,7 +38,8 @@ Ghost[] ghosts = {
     }
     player = minim.loadFile("Pacman Siren.mp3");
     player.loop();
-    frameRate(40);
+    */
+    //frameRate(40);
   }
 
 
@@ -65,12 +67,12 @@ void draw() {
     }
     // PACMAN // 
     pacman.updateCurrentNode();
-    if (pacman.move()) {
-
+    pacman.move();
+    /*
       if ( moves % 8 == 0) {
         player2.play();
       }
-    }
+    } */
     pacman.draw();
     //theGrid();
 
