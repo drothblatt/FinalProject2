@@ -257,7 +257,12 @@ class Pacman {
   public void setScore(int points){
     score = points;
   }
+  
+  public int getScore(){
+    return score;
+  }
 
+<<<<<<< HEAD
   public float getX(){
      return x; 
   }
@@ -268,6 +273,14 @@ class Pacman {
   
   public void setNextDirection(float i){
     nextDir = i;
+=======
+  public int getLives(){
+    return lives;
+  }
+  
+  public float getX() {
+    return x;
+>>>>>>> dec7ac9aa757becfe4474811647f4ec2a515be39
   }
   
   public void updateCurrentNode() {

@@ -21,6 +21,7 @@ AudioPlayer player;
 AudioPlayer player2;
 Minim minim, minim2;
 int moves = 0;
+int MODE = 1; 
 Ghost[] ghosts = { 
   new Blinky( 300, 251, pacman, nodeMap ), 
   new Clyde ( 340, 308, pacman, nodeMap ), 
@@ -55,6 +56,7 @@ Ghost[] ghosts = {
 >>>>>>> 912a27bcf7f53d2f5b65ec47fe9ec66da150ef79
 
 void draw() {
+<<<<<<< HEAD
   background(0);
   image(map, 20, 20);
   // DOTS // 
@@ -121,33 +123,73 @@ void keyPressed(){
 
 void mouseClicked(){
 =======
+=======
+  if (MODE == 0) {
+    pauseMenu();
+  } else {
+    background(0);
+    image(map, 20, 20);
+    fill(255, 204, 0);
+    textSize(18);
+    text("Press SPACEBAR to pause", 195, 735);
 
-  for ( Ghost g : ghosts ) {
-    g.draw();
-  }
-  // PACMAN // 
-  pacman.updateCurrentNode();
-  if (pacman.move()) {
-
-    if ( moves % 8 == 0) {
-      player2.play();
+    // DOTS // 
+    for (int i = 0; i < 31; i++ ) {
+      for (int j = 0; j < 28; j++ ) {
+        if (nodeMap.nodeGrid[i][j] != null && nodeMap.nodeGrid[i][j].hasDot()) {
+          (nodeMap.nodeGrid[i][j]).draw();
+        }
+      }
     }
-  }
-  pacman.draw();
-  //theGrid();
+>>>>>>> dec7ac9aa757becfe4474811647f4ec2a515be39
 
-  // GRID // 
+    for ( Ghost g : ghosts ) {
+      g.draw();
+    }
+    // PACMAN // 
+    pacman.updateCurrentNode();
+    if (pacman.move()) {
 
-  fill(0);
-  stroke(255);
-  for (int i = 20; i <= 580; i += 20) { // vertically
-    line(i, 20, i, 640);
-  }
+      if ( moves % 8 == 0) {
+        player2.play();
+      }
+    }
+    pacman.draw();
+    //theGrid();
 
-  for (int j = 20; j <= 640; j += 20) { // horizontally
-    line(20, j, 580, j);
+    // GRID // 
+
+    fill(0);
+    stroke(255);
+
+    /*
+    for (int i = 20; i <= 580; i += 20) { // vertically
+     line(i, 20, i, 640);
+     }
+     
+     for (int j = 20; j <= 640; j += 20) { // horizontally
+     line(20, j, 580, j);
+     }
+     */
   }
 }
+
+void pauseMenu() {
+  fill(0, 0, 0, 100);
+  rect(50, 50, 500, 560);
+  fill(255, 204, 0);
+  textSize(18);
+  text("PACMAN", 100, 100);
+  text("David Rothblatt - Elias Saric - Gary Zhu", 100, 150);
+  text("Score: ", 100, 225);
+  text("" + pacman.getScore(), 100, 250);
+  text("Lives: ", 100, 325);
+  text("" + (pacman.getLives() + 1), 100, 350);
+  text("Use ARROWKEYS to move", 100, 400);
+  text("Press SPACEBAR to keep playing", 100, 500);
+  text("Press ESC to quit", 100, 575);
+}
+
 
 void theGrid() {
   for ( int i = 0; i <  nodeMap.strGrid[0].length; i++) {
@@ -173,6 +215,14 @@ void keyPressed() {
   }
   if (keyCode==39) {
     pacman.setNextDirection( TWO_PI );//right
+  }
+
+  if (keyCode == 32) { // spacebar
+    if (MODE == 0) {
+      MODE = 1;
+    } else {
+      MODE = 0;
+    }
   }
 }  
 
