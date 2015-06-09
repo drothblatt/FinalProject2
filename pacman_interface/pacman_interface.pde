@@ -6,7 +6,7 @@ NodeMap nodeMap;
 PImage map;
 AudioPlayer player;
 AudioPlayer player2;
-Minim minim;
+Minim minim, minim2;
 int moves = 0;
 int MODE = 1; 
 Ghost[] ghosts = { 
@@ -14,7 +14,7 @@ Ghost[] ghosts = {
   new Clyde ( 340, 308, pacman, nodeMap ), 
   new Inky ( 260, 308, pacman, nodeMap ), 
   new Pinky ( 300, 308, pacman, nodeMap )
-};
+  };
 
   void setup() {
     size(650, 750);
@@ -23,32 +23,34 @@ Ghost[] ghosts = {
     nodeMap = new NodeMap();
     pacman = new Pacman(310, 490, nodeMap);
     //System.out.println(nodeMap);
-    /*minim = new Minim(this);
-     player = minim.loadFile("Pacman Opening Song.mp3");
-     player.play();
-     draw();
-     try {
-     Thread.sleep(3800);
-     }
-     catch(Exception e) {
-     System.out.println("nope");
-     }
-     player = minim.loadFile("Pacman Siren.mp3");
-     player.loop();
-     frameRate(40);*/
+    minim = new Minim(this);
+    minim2 = new Minim(this);
+    player = minim.loadFile("Pacman Opening Song.mp3");
+    player2 = minim.loadFile("Pacman Waka Waka.mp3");
+    player.play();
+    draw();
+    try {
+      Thread.sleep(3800);
+    }
+    catch(Exception e) {
+      System.out.println("nope");
+    }
+    player = minim.loadFile("Pacman Siren.mp3");
+    player.loop();
+    frameRate(40);
   }
 
 
 void draw() {
-  if (MODE == 0){
-      pauseMenu();
-  } else{
+  if (MODE == 0) {
+    pauseMenu();
+  } else {
     background(0);
     image(map, 20, 20);
     fill(255, 204, 0);
     textSize(18);
     text("Press SPACEBAR to pause", 195, 735);
-    
+
     // DOTS // 
     for (int i = 0; i < 31; i++ ) {
       for (int j = 0; j < 28; j++ ) {
@@ -57,40 +59,39 @@ void draw() {
         }
       }
     }
-  
+
     for ( Ghost g : ghosts ) {
       g.draw();
     }
     // PACMAN // 
     pacman.updateCurrentNode();
-    pacman.move();
-    /*
-      if ( moves % 2 == 0) {
-     player2 = minim.loadFile("Pacman Waka Waka.mp3");
-     player2.play();
-     }
-     }*/
+    if (pacman.move()) {
+
+      if ( moves % 8 == 0) {
+        player2.play();
+      }
+    }
     pacman.draw();
     //theGrid();
-  
+
     // GRID // 
-  
+
     fill(0);
     stroke(255);
-    
+
     /*
     for (int i = 20; i <= 580; i += 20) { // vertically
-      line(i, 20, i, 640);
-    }
-  
-    for (int j = 20; j <= 640; j += 20) { // horizontally
-      line(20, j, 580, j);
-    }
-    */
+     line(i, 20, i, 640);
+     }
+     
+     for (int j = 20; j <= 640; j += 20) { // horizontally
+     line(20, j, 580, j);
+     }
+     */
   }
 }
 
-void pauseMenu(){
+void pauseMenu() {
   fill(0, 0, 0, 100);
   rect(50, 50, 500, 560);
   fill(255, 204, 0);
@@ -104,7 +105,6 @@ void pauseMenu(){
   text("Use ARROWKEYS to move", 100, 400);
   text("Press SPACEBAR to keep playing", 100, 500);
   text("Press ESC to quit", 100, 575);
-
 }
 
 
@@ -133,15 +133,14 @@ void keyPressed() {
   if (keyCode==39) {
     pacman.setNextDirection( TWO_PI );//right
   }
-  
-  if (keyCode == 32){ // spacebar
-    if (MODE == 0){
+
+  if (keyCode == 32) { // spacebar
+    if (MODE == 0) {
       MODE = 1;
-    } else{
+    } else {
       MODE = 0;
     }
   }
-  
 }  
 
 void mouseClicked() {
