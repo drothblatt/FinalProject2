@@ -1,39 +1,66 @@
-class Ghost{
-  final PImage img;
+abstract class Ghost {
   final color c; 
   float x, y;
   boolean isEatable;
-  
-  final color RED = color(255, 0, 0);
+  Pacman pacman;
+  NodeMap nodeMap;
+
   final color BLUE = color(0, 0, 255);
   final color PINK = color(255, 51, 255);
-  final color ORANGE = color(255, 128, 0);
-  
-  public Ghost(float x, float y, color c){
-      this.x = x;
-      this.y = y; 
-      this.c = c;
-      if (c == RED){
-        img = loadImage("blinky.jpg");
-      } else if ( c == PINK){
-        img = loadImage("pinky.jpg");
-      } else if ( c == BLUE){
-        img = loadImage("inky.jpg");
-      } else if ( c == ORANGE) {
-        img = loadImage("clyde.jpg");
-      } else {
-        img = loadImage("blinky.jpg");
-      }
-      
+
+  public Ghost(float x, float y, color c, Pacman pm, NodeMap nm) {
+    this.x = x;
+    this.y = y; 
+    this.c = c;
+    pacman = pm;
+    nodeMap = nm;
   }
-  
-  void draw(){
-     image(img, x, y);
+
+  public abstract void move();
+
+  public void draw() {
+    fill(c);
+    ellipse ( x, y, 32, 32 );
   }
-  
-  
-  
-  
-  
-  
 }
+
+public class Blinky extends Ghost {
+
+  public Blinky(float x, float y, Pacman pm, NodeMap nm) {
+    super(x, y, color(255, 0, 0), pm, nm );
+  } 
+
+  public void move() {
+  }
+}
+
+public class Inky extends Ghost {
+
+  public Inky(float x, float y, Pacman pm, NodeMap nm) {
+    super(x, y, color(0, 0, 255), pm, nm );
+  } 
+
+  public void move() {
+  }
+}
+
+public class Clyde extends Ghost {
+
+  public Clyde(float x, float y, Pacman pm, NodeMap nm) {
+    super(x, y, color(255, 128, 0), pm, nm );
+  } 
+
+  public void move() {
+  }
+}
+
+public class Pinky extends Ghost {
+
+  public Pinky(float x, float y, Pacman pm, NodeMap nm) {
+    super(x, y, color(255, 200, 200), pm, nm );
+  } 
+
+  public void move() {
+  }
+}
+
