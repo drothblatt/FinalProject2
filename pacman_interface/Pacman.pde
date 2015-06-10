@@ -74,12 +74,24 @@ class Pacman {
     if (nextDir == dir + PI || nextDir == dir - PI) {
       dir = nextDir;
     }
+    if (dir == UP && currNode.getUp() != null ) {
+      eat(currNode.getUp());
+    }
+    if (dir == LEFT && currNode.getLeft() != null ) {
+      eat(currNode.getLeft());
+    }
+    if (dir == RIGHT && currNode.getRight() != null ) {
+      eat(currNode.getRight());
+    }
+    if (dir == DOWN && currNode.getDown() != null ) {
+      eat(currNode.getDown());
+    }
     if (currNode.getX() == x && currNode.getY() == y) {
-      if (currNode.hasDot()) {
-        score+=currNode.getVal();   
-        currNode.setDot(false);
-        ret = true;
-      }
+      /*if (currNode.hasDot()) {
+       score+=currNode.getVal();   
+       currNode.setDot(false);
+       ret = true;
+       }*/
       if (nextDir == UP && currNode.getUp() != null) {
         dir = UP;
       }
@@ -112,6 +124,18 @@ class Pacman {
     return ret;
   }
 
+  public float square(float i) {
+    return i*i;
+  }
+
+  public void eat(Node n) {
+    if ( square(n.getX() - x ) + square(n.getY() - y ) <= square(16) ) {
+      if (n.hasDot()) {
+        score += n.getVal();
+        n.setDot(false);
+      }
+    }
+  }
   public boolean inBounds(float x, float y) {
     if (dir== 3*HALF_PI) {
       return (( y - 2.5 ) - 10)/20 >=1;
@@ -132,15 +156,15 @@ class Pacman {
   public void setScore(int points) {
     score = points;
   }
-  
-  public int getScore(){
+
+  public int getScore() {
     return score;
   }
 
-  public int getLives(){
+  public int getLives() {
     return lives;
   }
-  
+
   public float getX() {
     return x;
   }

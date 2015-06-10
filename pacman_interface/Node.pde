@@ -35,8 +35,8 @@ class Node {
     if ( ycor <= 410 && ycor >= 210 && xcor >= 170 && xcor <= 430) {
       hasDot=false;
     }
-    
-    if (ycor == 310 && (x < 150 || x > 450) ){
+
+    if (ycor == 310 && (x < 150 || x > 450) ) {
       hasDot=false;
     }
   }
