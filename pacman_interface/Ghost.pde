@@ -5,6 +5,7 @@ abstract class Ghost {
   Pacman pacman;
   NodeMap nodeMap;
   Node currNode;
+  int dir = 0;
 
   final color BLUE = color(0, 0, 255);
   final color PINK = color(255, 51, 255);
@@ -26,6 +27,18 @@ abstract class Ghost {
     fill(c);
     ellipse ( x, y, 32, 32 );
   }
+  
+  public void kill(){
+    for ( int i = -16; i <= 16 ; i++){
+      if ( square(pacman.getX()-(x+i))+square(pacman.getY()-(y+i))<=square(16)){
+        pacman.die();
+      }
+    }
+  }
+  
+  public float square(float i) {
+    return i*i;
+  }
 }
 
 public class Blinky extends Ghost {
@@ -35,6 +48,7 @@ public class Blinky extends Ghost {
   } 
 
   public void move() {
+    kill();
   }
 }
 

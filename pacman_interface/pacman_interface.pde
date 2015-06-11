@@ -68,6 +68,9 @@ void draw() {
     // PACMAN // 
     pacman.updateCurrentNode();
     pacman.move();
+    for( Ghost g : ghosts ){
+      g.move();
+    }
     /*
       if ( moves % 8 == 0) {
      player2.play();
@@ -104,7 +107,8 @@ void pauseMenu() {
   text("Lives: ", 100, 325);
   text("" + (pacman.getLives() + 1), 100, 350);
   text("Use ARROWKEYS to move", 100, 400);
-  text("Press SPACEBAR to keep playing", 100, 500);
+  text("Press SPACEBAR to keep playing", 100, 450);
+  text("To Restart, Press 'R'", 100, 500);
   text("Press ESC to quit", 100, 575);
 }
 
@@ -134,6 +138,13 @@ void keyPressed() {
   if (keyCode==39) {
     pacman.setNextDirection( TWO_PI );//right
   }
+  
+  if (keyCode==82){
+    if (MODE == 0){
+      restart();
+      MODE = 1;
+    }
+  }
 
   if (keyCode == 32) { // spacebar
     if (MODE == 0) {
@@ -146,5 +157,9 @@ void keyPressed() {
 
 void mouseClicked() {
   print( "(" + mouseX + "," + mouseY + ")" );
+}
+
+void restart(){
+ setup(); 
 }
 

@@ -177,8 +177,11 @@ class Pacman {
     nextDir = i;
   }
 
-  public void kill() {
+  public void die() {
     lives--;
+    x = 310;
+    y = 490;
+    updateCurrentNode();
   }
 
   public void updateCurrentNode() {
