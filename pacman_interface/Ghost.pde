@@ -6,6 +6,10 @@ abstract class Ghost {
   NodeMap nodeMap;
   Node currNode, nextNode;
   int dir = 0;
+  private static final float UP =  3*HALF_PI;
+  private static final float DOWN =  HALF_PI;
+  private static final float LEFT =  PI;
+  private static final float RIGHT =  TWO_PI;
 
   final color BLUE = color(0, 0, 255);
   final color PINK = color(255, 51, 255);
@@ -56,36 +60,67 @@ public class Blinky extends Ghost {
 
   public void move() {
     kill();
+    
+    System.out.println("Position: " + x + "," + y);
+    System.out.println("currNode: " + currNode.getX() + "," + currNode.getY());
     //the first part is to find which node is closest to the pacman
-    if ( currNode.getX() == x && currNode.getY() == y ) {
-      Node[] nodes = new Node[4];
-      Node closest;
-      if (currNode.hasUp()) {
-        nodes[0]=currNode.getUp();
+    if (x == currNode.getX() && y == currNode.getY()){
+      Node next = closest();
+      if (next == currNode.getUp()) {
+        dir = UP;
       }
-      if (currNode.hasLeft()) {
-        nodes[1]=currNode.getLeft();
+      if (next == currNode.getDown()) {
+        dir = DOWN;
       }
-      if (currNode.hasRight()) {
-        nodes[2]=currNode.getRight();
+      if (next == currNode.getRight()) {
+        dir = RIGHT;
       }
-      if (currNode.hasDown()) {
-        nodes[3]=currNode.getDown();
+      if (next == currNode.getLeft()) {
+        dir = LEFT;
       }
-      float dist = Integer.MAX_VALUE;
-      for ( Node n : nodes ) {
-        if ( n != null ) {
-          float nn = n.dist2( pacman.getX(), x, pacman.getY(), y);
-          if ( nn < dist ) {
-            dist = nn;
-            currNode = n;
-          }
-        }
-      }
-    } else {
+    }
+    if ( dir == UP ) {
+      y = y - 2.5;
+    } else if ( dir == DOWN ) {
+      y = y + 2.5;
+    } else if ( dir == LEFT ) {
+      x = x - 2.5;
+    } else if ( dir == RIGHT ) {
+      x = x + 2.5;
     }
   }
+
+  public Node closest() {
+    Node[] nodes = new Node[4];
+    Node closest = null;
+    if (currNode.hasUp()) {
+      nodes[0]=currNode.getUp();
+    }
+    if (currNode.hasLeft()) {
+      nodes[1]=currNode.getLeft();
+    }
+    if (currNode.hasRight()) {
+      nodes[2]=currNode.getRight();
+    }
+    if (currNode.hasDown()) {
+      nodes[3]=currNode.getDown();
+    }
+    float dist = Integer.MAX_VALUE;
+    for ( Node n : nodes ) {
+      if ( n != null ) {
+        float nn = n.dist2( pacman.getX(), x, pacman.getY(), y);
+        if ( nn < dist ) {
+          dist = nn;
+          closest = n;
+        }
+      }
+    }
+    return closest;
+  }
+  
 }
+
+
 public class Inky extends Ghost {
 
   public Inky(float x, float y, Pacman pm, NodeMap nm) {
