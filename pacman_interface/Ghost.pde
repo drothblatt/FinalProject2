@@ -4,6 +4,7 @@ abstract class Ghost {
   boolean isEatable;
   Pacman pacman;
   NodeMap nodeMap;
+  Node currNode;
 
   final color BLUE = color(0, 0, 255);
   final color PINK = color(255, 51, 255);
@@ -14,6 +15,9 @@ abstract class Ghost {
     this.c = c;
     pacman = pm;
     nodeMap = nm;
+    currNode = nodeMap.nodeGrid[(int)((y-30)/20)][(int)((x-30)/20)];
+    //System.out.println((int)((y-30)/20)+","+(int)(x-30)/20);
+    //System.out.println(nodeMap.nodeGrid[(int)(y-30)/20][(int)(x-30)/20]);
   }
 
   public abstract void move();

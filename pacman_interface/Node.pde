@@ -10,7 +10,7 @@ class Node {
     x = xcor;
     y = ycor;
     hasDot=true;
-
+/*
     if ( (xcor-30)/20 == 1 && (ycor-30)/20 == 3 ) {
       dotVal = 50;
       hasBigDot=true;
@@ -38,7 +38,7 @@ class Node {
 
     if (ycor == 310 && (x < 150 || x > 450) ) {
       hasDot=false;
-    }
+    }*/
   }
 
   void draw() {

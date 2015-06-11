@@ -9,19 +9,19 @@ AudioPlayer player2;
 Minim minim, minim2;
 int moves = 0;
 int MODE = 1; 
-Ghost[] ghosts = { 
-  new Blinky( 300, 251, pacman, nodeMap ), 
-  new Clyde ( 340, 308, pacman, nodeMap ), 
-  new Inky ( 260, 308, pacman, nodeMap ), 
-  new Pinky ( 300, 308, pacman, nodeMap )
-  };
+Ghost[] ghosts;
 
-  void setup() {
-    size(650, 750);
-    background(0);
-    map = loadImage("map.jpg");   
-    nodeMap = new NodeMap();
-    pacman = new Pacman(310, 490, nodeMap);
+void setup() {
+  size(650, 750);
+  background(0);
+  map = loadImage("map.jpg");   
+  nodeMap = new NodeMap();
+  pacman = new Pacman(310, 490, nodeMap);
+  ghosts = new Ghost[4];
+  ghosts[0] = new Blinky( 290, 250, pacman, nodeMap );
+  ghosts[1] = new Clyde ( 330, 310, pacman, nodeMap );
+  ghosts[2] = new Inky ( 250, 310, pacman, nodeMap );
+  ghosts[3] = new Pinky ( 290, 310, pacman, nodeMap );
     //System.out.println(nodeMap);
     /*
     minim = new Minim(this);
@@ -40,7 +40,7 @@ Ghost[] ghosts = {
      player.loop();
      */
     //frameRate(40);
-  }
+}
 
 
 void draw() {
@@ -81,15 +81,14 @@ void draw() {
     fill(0);
     stroke(255);
 
-    /*
+
     for (int i = 20; i <= 580; i += 20) { // vertically
-     line(i, 20, i, 640);
-     }
-     
-     for (int j = 20; j <= 640; j += 20) { // horizontally
-     line(20, j, 580, j);
-     }
-     */
+      line(i, 20, i, 640);
+    }
+
+    for (int j = 20; j <= 640; j += 20) { // horizontally
+      line(20, j, 580, j);
+    }
   }
 }
 
