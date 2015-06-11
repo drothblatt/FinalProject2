@@ -22,24 +22,24 @@ void setup() {
   ghosts[1] = new Clyde ( 330, 310, pacman, nodeMap );
   ghosts[2] = new Inky ( 250, 310, pacman, nodeMap );
   ghosts[3] = new Pinky ( 290, 310, pacman, nodeMap );
-    //System.out.println(nodeMap);
-    /*
+  //System.out.println(nodeMap);
+  /*
     minim = new Minim(this);
-     minim2 = new Minim(this);
-     player = minim.loadFile("Pacman Opening Song.mp3");
-     player2 = minim.loadFile("Pacman Waka Waka.mp3");
-     player.play();
-     draw();
-     try {
-     Thread.sleep(3800);
-     }
-     catch(Exception e) {
-     System.out.println("nope");
-     }
-     player = minim.loadFile("Pacman Siren.mp3");
-     player.loop();
-     */
-    //frameRate(40);
+   minim2 = new Minim(this);
+   player = minim.loadFile("Pacman Opening Song.mp3");
+   player2 = minim.loadFile("Pacman Waka Waka.mp3");
+   player.play();
+   draw();
+   try {
+   Thread.sleep(3800);
+   }
+   catch(Exception e) {
+   System.out.println("nope");
+   }
+   player = minim.loadFile("Pacman Siren.mp3");
+   player.loop();
+   */
+  //frameRate(40);
 }
 
 
@@ -68,7 +68,7 @@ void draw() {
     // PACMAN // 
     pacman.updateCurrentNode();
     pacman.move();
-    for( Ghost g : ghosts ){
+    for ( Ghost g : ghosts ) {
       g.move();
     }
     /*
@@ -138,9 +138,9 @@ void keyPressed() {
   if (keyCode==39) {
     pacman.setNextDirection( TWO_PI );//right
   }
-  
-  if (keyCode==82){
-    if (MODE == 0){
+
+  if (keyCode==82) {
+    if (MODE == 0) {
       restart();
       MODE = 1;
     }
@@ -159,7 +159,7 @@ void mouseClicked() {
   print( "(" + mouseX + "," + mouseY + ")" );
 }
 
-void restart(){
- setup(); 
+void restart() {
+  setup();
 }
 

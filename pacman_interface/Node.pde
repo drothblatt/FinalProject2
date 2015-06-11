@@ -59,16 +59,16 @@ class Node {
     return y;
   }
 
-  public boolean hasUp(){
+  public boolean hasUp() {
     return up != null;
   }
-  public boolean hasLeft(){
+  public boolean hasLeft() {
     return left != null;
   }
-  public boolean hasRight(){
+  public boolean hasRight() {
     return right != null;
   }
-  public boolean hasDown(){
+  public boolean hasDown() {
     return down != null;
   }
 
@@ -117,11 +117,11 @@ class Node {
   public int getVal() {
     return dotVal;
   }
-  
-  public float dist2(float x1, float x2, float y1, float y2){
-     return square(x1-x2)+square(y1-y2);
+
+  public float dist2(float x1, float x2, float y1, float y2) {
+    return square(x1-x2)+square(y1-y2);
   }
-  
+
   public float square(float i) {
     return i*i;
   }
