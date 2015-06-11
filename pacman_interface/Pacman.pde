@@ -47,7 +47,7 @@ class Pacman {
 
     // MOVING MOUTH //  ** similar something I found on OpenProcessing, but my own version
     if (closingMouth) {
-      arcChanges++;
+      arcChanges++;  
       if (arcChanges == 4) {
         closingMouth = false;
       }
@@ -92,16 +92,16 @@ class Pacman {
        currNode.setDot(false);
        ret = true;
        }*/
-      if (nextDir == UP && currNode.getUp() != null) {
+      if (nextDir == UP && currNode.hasUp()) {
         dir = UP;
       }
-      if (nextDir == DOWN && currNode.getDown() != null) {
+      if (nextDir == DOWN && currNode.hasDown()) {
         dir = DOWN;
       }
-      if (nextDir == LEFT && currNode.getLeft() != null) {
+      if (nextDir == LEFT && currNode.hasLeft()) {
         dir = LEFT;
       }
-      if (nextDir == RIGHT && currNode.getRight() != null) {
+      if (nextDir == RIGHT && currNode.hasRight()) {
         dir = RIGHT;
       }
     }
@@ -110,13 +110,13 @@ class Pacman {
     } else if (x == 570 && y == 310) {
       x = 30;
     }
-    if ( dir == UP && ((currNode.getUp() == null && currNode.getY() != y) || currNode.getUp() != null)) {
+    if ( dir == UP && ((currNode.getUp() == null && currNode.getY() != y) || currNode.hasUp())) {
       y = y - 2.5;
-    } else if ( dir == DOWN &&  ((currNode.getDown() == null && currNode.getY() != y) || currNode.getDown() != null)) {
+    } else if ( dir == DOWN &&  ((currNode.getDown() == null && currNode.getY() != y) || currNode.hasDown())) {
       y = y + 2.5;
-    } else if ( dir == LEFT && ((currNode.getLeft() == null && currNode.getX() != x) || currNode.getLeft() != null)) {
+    } else if ( dir == LEFT && ((currNode.getLeft() == null && currNode.getX() != x) || currNode.hasLeft())) {
       x = x - 2.5;
-    } else if ( dir == RIGHT && ((currNode.getRight() == null && currNode.getX() != x) || currNode.getRight() != null)) {
+    } else if ( dir == RIGHT && ((currNode.getRight() == null && currNode.getX() != x) || currNode.hasRight())) {
       x = x + 2.5;
     } else {
       dir = 0;
@@ -181,6 +181,8 @@ class Pacman {
     lives--;
     x = 310;
     y = 490;
+    dir = 0;
+    nextDir = 0;
     updateCurrentNode();
   }
 
