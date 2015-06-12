@@ -172,6 +172,10 @@ class Pacman {
   public float getY() {
     return y;
   }
+  
+  public Node getCurrNode() {
+    return currNode;
+  }
 
   public void setNextDirection(float i) {
     nextDir = i;

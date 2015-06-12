@@ -8,7 +8,7 @@ AudioPlayer player;
 AudioPlayer player2;
 Minim minim, minim2;
 int moves = 0;
-int MODE = 1; 
+int MODE = 1;
 Ghost[] ghosts;
 
 void setup() {
@@ -136,7 +136,6 @@ void keyPressed() {
   if (keyCode==39) {
     pacman.setNextDirection( TWO_PI );//right
   }
-
   if (keyCode==82) {
     if (MODE == 0) {
       restart();

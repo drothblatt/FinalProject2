@@ -50,6 +50,10 @@ abstract class Ghost {
      System.out.println("(" + currNode.getX() + "," + currNode.getY() + ")");
      System.out.println("(" + x + "," + y + ")");*/
   }
+
+  public float dist2(float x1, float x2, float y1, float y2) {
+    return square(x1-x2)+square(y1-y2);
+  }
 }
 
 public class Blinky extends Ghost {
@@ -60,11 +64,11 @@ public class Blinky extends Ghost {
 
   public void move() {
     kill();
-    
+
     System.out.println("Position: " + x + "," + y);
     System.out.println("currNode: " + currNode.getX() + "," + currNode.getY());
     //the first part is to find which node is closest to the pacman
-    if (x == currNode.getX() && y == currNode.getY()){
+    if (x == currNode.getX() && y == currNode.getY()) {
       Node next = closest();
       if (next == currNode.getUp()) {
         dir = UP;
@@ -91,33 +95,38 @@ public class Blinky extends Ghost {
   }
 
   public Node closest() {
-    Node[] nodes = new Node[4];
-    Node closest = null;
-    if (currNode.hasUp()) {
-      nodes[0]=currNode.getUp();
+    float leftDist = (float)Integer.MAX_VALUE;
+    float rightDist = (float)Integer.MAX_VALUE;
+    float upDist = (float)Integer.MAX_VALUE;
+    float downDist = (float)Integer.MAX_VALUE;
+    if (currNode.getLeft() != null) {
+      leftDist = dist2(pacman.getX(), (float)currNode.getLeft().getX(), pacman.getY(), (float)currNode.getLeft().getY());
     }
-    if (currNode.hasLeft()) {
-      nodes[1]=currNode.getLeft();
+    if (currNode.getRight() != null) {
+      rightDist = dist2(pacman.getX(), (float)currNode.getRight().getX(), pacman.getY(), (float)currNode.getRight().getY());
     }
-    if (currNode.hasRight()) {
-      nodes[2]=currNode.getRight();
+    if (currNode.getUp() != null) {
+      upDist = dist2(pacman.getX(), (float)currNode.getUp().getX(), pacman.getY(), (float)currNode.getUp().getY());
     }
-    if (currNode.hasDown()) {
-      nodes[3]=currNode.getDown();
+    if (currNode.getDown() != null) {
+      downDist = dist2(pacman.getX(), (float)currNode.getDown().getX(), pacman.getY(), (float)currNode.getDown().getY());
     }
-    float dist = Integer.MAX_VALUE;
-    for ( Node n : nodes ) {
-      if ( n != null ) {
-        float nn = n.dist2( pacman.getX(), x, pacman.getY(), y);
-        if ( nn < dist ) {
-          dist = nn;
-          closest = n;
-        }
-      }
+    float closestDist = Math.min(Math.min(leftDist, rightDist), Math.min(upDist, downDist));
+
+    if (leftDist == closestDist) {
+      return currNode.getLeft();
     }
-    return closest;
+    if (rightDist == closestDist) {
+      return currNode.getRight();
+    }
+    if (upDist == closestDist) {
+      return currNode.getUp();
+    }
+    if (downDist == closestDist) {
+      return currNode.getDown();
+    }
+    return null;
   }
-  
 }
 
 

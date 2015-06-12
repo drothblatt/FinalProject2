@@ -118,9 +118,7 @@ class Node {
     return dotVal;
   }
 
-  public float dist2(float x1, float x2, float y1, float y2) {
-    return square(x1-x2)+square(y1-y2);
-  }
+  
 
   public float square(float i) {
     return i*i;
