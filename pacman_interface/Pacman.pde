@@ -192,9 +192,6 @@ class Pacman {
 
   public void updateCurrentNode() {
     currNode = nodeMap.nodeGrid[(int)y/20-1][(int)x/20-1];
-    /*System.out.println(currNode);
-     System.out.println("(" + currNode.getX() + "," + currNode.getY() + ")");
-     System.out.println("(" + x + "," + y + ")");*/
   }
 }
 
