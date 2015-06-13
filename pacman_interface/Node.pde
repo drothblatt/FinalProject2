@@ -118,8 +118,6 @@ class Node {
     return dotVal;
   }
 
-  
-
   public float square(float i) {
     return i*i;
   }
