@@ -1,6 +1,7 @@
 import java.util.*;
 import ddf.minim.*;
 
+
 Pacman pacman;
 NodeMap nodeMap;
 PImage map;
