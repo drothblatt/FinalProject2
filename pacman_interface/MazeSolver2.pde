@@ -1,12 +1,15 @@
 import java.util.*;
 import java.io.*;
 
-public class Maze{
+public class MazeSolver2{
     
     private char[][] maze;
     private int startx,starty,endx,endy;
     private Node start, sol;
     private boolean solvable = true;
+    
+    private Pacman p;
+    private Ghost g;
 
     private class Node{
       private int r; // row
@@ -56,10 +59,10 @@ public class Maze{
   }
 
   private class Frontier{
-    private MyDeque<Node> d; 
+    private MyDeque2<Node> d; 
   
-    private Frontier(int mode){
-        d = new MyDeque<Node>(15);
+    private Frontier(){
+        d = new MyDeque2<Node>(15);
     }
     private void add(Node loc){
        d.add(loc, loc.getDTo() + loc.getDFrom() );  // A*
@@ -79,14 +82,14 @@ public class Maze{
   }
 
 
-  public Maze(Node[][] grid){
+  public Maze(String[][] grid, Pacman pac, Ghost gho){
+    p = pac;
+    g = gho;
     maze = grid;
-    start = now;
-    this.end = end;
-    sx = start.getX()/20 - 1;
-    sy = start.getY()/20 - 1;
-    ex = end.getX()/20 - 1;
-    ey = end.getY()/20 - 1;
+    startx =(int)g.getX()/20 - 1;
+    starty =(int)g.getY()/20 - 1;
+    endx = (int)p.getX()/20 - 1;
+    endy = (int)p.getY()/20 - 1;
     start = new Node(startx, starty);
  }
 
@@ -100,7 +103,7 @@ public class Maze{
     while(!solFound){
         if( nexts.size() == 0 ){
             return false;
-        } else if ( findE(nexts, animate) ){
+        } else if ( findE(nexts) ){
             solFound = true;
         }
     }
@@ -111,16 +114,13 @@ public class Maze{
           maze[bt.getRow()][bt.getCol()] = '@';
           bt = bt.getPrev();
         }   
+        System.out.println("soln found");
         return true;
     } 
     return false;
   }
 
-  private boolean findE(Frontier a, boolean animate){
-      if (animate){
-          System.out.println(toString(animate));
-          wait(70);
-      }
+  private boolean findE(Frontier a){
       Node p = a.remove();
       System.out.println(p + " " + p.getDTo());
       if (maze[p.getRow()][p.getCol()] == 'E'){
@@ -129,21 +129,21 @@ public class Maze{
       } 
       if (maze[p.getRow()][p.getCol()] == ' ' || maze[p.getRow()][p.getCol()] == 'S'){
           if ( maze[p.getRow()][p.getCol()] == ' ' ){
-        maze[p.getRow()][p.getCol()] = 'x';
+            maze[p.getRow()][p.getCol()] = 'x';
           }
     
           if ( maze[p.getRow()+1][p.getCol()] == ' ' || maze[p.getRow()+1][p.getCol()] == 'E' ){
-        a.add(new Node(p.getRow()+1, p.getCol(), p.getDFrom()+1, p));
+            a.add(new Node(p.getRow()+1, p.getCol(), p.getDFrom()+1, p));
           }
     
           if ( maze[p.getRow()-1][p.getCol()] == ' ' || maze[p.getRow()-1][p.getCol()] == 'E'){
-        a.add(new Node(p.getRow()-1, p.getCol(), p.getDFrom()+1, p));
+            a.add(new Node(p.getRow()-1, p.getCol(), p.getDFrom()+1, p));
           }
           if ( maze[p.getRow()][p.getCol()+1] == ' ' || maze[p.getRow()][p.getCol()+1] == 'E' ){
-        a.add(new Node(p.getRow(), p.getCol()+1, p.getDFrom()+1, p)); 
+            a.add(new Node(p.getRow(), p.getCol()+1, p.getDFrom()+1, p)); 
           }
           if ( maze[p.getRow()][p.getCol()-1] == ' ' || maze[p.getRow()][p.getCol()-1] == 'E'){
-        a.add(new Node(p.getRow(), p.getCol()-1, p.getDFrom()+1, p)); 
+            a.add(new Node(p.getRow(), p.getCol()-1, p.getDFrom()+1, p)); 
           }
       }
       return false;

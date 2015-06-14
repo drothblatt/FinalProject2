@@ -1,55 +1,51 @@
 import java.util.*;
 
-public class MyDeque<T>{
+public class MyDeque2<T>{
     private int head, tail, size;
     private Object[] data;
     private int[] d2goal;
 
-    public MyDeque(){
-  this(7);
+    public MyDeque2(){
+      this(7);
     }
-    public MyDeque(int s){
-  data = new Object[s];
-  d2goal = new int[s];
-  head = s/2;
-  tail = head-1;
-  size = 0;
+    public MyDeque2(int s){
+      data = new Object[s];
+      d2goal = new int[s];
+      head = s/2;
+      tail = head-1;
+      size = 0;
     }
 
-    public String name(){
-  return "rothblatt.david";
-    }
-    
     public String toString(){
-  String ans = "[";
-  if (size > 0){
-      for (int i = 0; i < size-1; i++){
-    ans += data[ (head+i) % data.length] + ", ";
+      String ans = "[";
+      if (size > 0){
+          for (int i = 0; i < size-1; i++){
+        ans += data[ (head+i) % data.length] + ", ";
+          }
+          ans += data[tail];
       }
-      ans += data[tail];
-  }
-  ans += "]";
-  return ans;
+      ans += "]";
+      return ans;
     }
 
     public void addFirst(T value){
-  resize();
-  head--;
-  if (head < 0){
-      head = data.length-1;
-  }
-  data[head] = value;
-  size++;
+      resize();
+      head--;
+      if (head < 0){
+          head = data.length-1;
+      }
+      data[head] = value;
+      size++;
     }
 
     public void addLast(T value){
-  resize();
-  tail++;
-  if (tail == data.length){
-      tail = 0;
-  }
-  data[tail] = value;
-  size++;
+      resize();
+      tail++;
+      if (tail == data.length){
+          tail = 0;
+      }
+      data[tail] = value;
+      size++;
     }
     
     public T removeFirst(){
@@ -116,32 +112,32 @@ public class MyDeque<T>{
     }
 
     public void add(T value, int dist){
-  addLast(value);
-  d2goal[tail] = dist;
+      addLast(value);
+      d2goal[tail] = dist;
     }
 
     public T removeSmallest(){
-  if (size == 0) throw new NoSuchElementException();
-  if (size == 1) {
-      size--; 
-      T value = (T)data[head];
-      data[head] = null;
-      head = (head+1)%data.length;
-      return value;
-  }
-  int minInd = head;
-  for (int i = 0; i < size; i++){
-      if ( d2goal[(i+head)%d2goal.length] < d2goal[minInd] ){
-    minInd = (i+head)%d2goal.length;
+      if (size == 0) throw new NoSuchElementException();
+      if (size == 1) {
+          size--; 
+          T value = (T)data[head];
+          data[head] = null;
+          head = (head+1)%data.length;
+          return value;
       }
-        }
-  T value = (T)data[minInd]; // swapping as Mr. K demonstrated
-  data[minInd] = data[head];
-  d2goal[minInd] = d2goal[head];
-  data[head] = null; 
-  size--;
-  head = (head+1)%data.length;
-  return (T)value;
+      int minInd = head;
+      for (int i = 0; i < size; i++){
+          if ( d2goal[(i+head)%d2goal.length] < d2goal[minInd] ){
+        minInd = (i+head)%d2goal.length;
+          }
+            }
+      T value = (T)data[minInd]; // swapping as Mr. K demonstrated
+      data[minInd] = data[head];
+      d2goal[minInd] = d2goal[head];
+      data[head] = null; 
+      size--;
+      head = (head+1)%data.length;
+      return (T)value;
     }
 
     
