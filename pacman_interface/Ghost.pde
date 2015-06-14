@@ -59,22 +59,36 @@ public class Blinky extends Ghost {
 
   public void move() {
     MazeSolver m = new MazeSolver(nodeMap.nodeGrid, currNode, pacman.currNode);
-    m.solve();
+    //System.out.println(currNode);
+    //System.out.println(pacman.currNode);
+    int mode = 0;
+    if ( mode == 0){
+      m.solve();
+    }
+    mode++;
     kill();
     //the first part is to find which node is closest to the pacman
     if (x == currNode.getX() && y == currNode.getY()) {
       Node next = m.nextStep();
-      if (next.getX() == currNode.getUp().getX() && next.getY() == currNode.getUp().getY()) {
-        dir = UP;
+      if ( currNode.hasUp()) {
+        if (next.getX() == currNode.getUp().getX() && next.getY() == currNode.getUp().getY()) {
+          dir = UP;
+        }
       }
-      if (next.getX() == currNode.getDown().getX() && next.getY() == currNode.getDown().getY()) {
-        dir = DOWN;
+      if ( currNode.hasDown()) {
+        if (next.getX() == currNode.getDown().getX() && next.getY() == currNode.getDown().getY()) {
+          dir = DOWN;
+        }
       }
-      if (next.getX() == currNode.getRight().getX() && next.getY() == currNode.getRight().getY()) {
-        dir = RIGHT;
+      if ( currNode.hasRight()) {
+        if (next.getX() == currNode.getRight().getX() && next.getY() == currNode.getRight().getY()) {
+          dir = RIGHT;
+        }
       }
-      if (next.getX() == currNode.getLeft().getX() && next.getY() == currNode.getLeft().getY()) {
-        dir = LEFT;
+      if ( currNode.hasLeft()) {
+        if (next.getX() == currNode.getLeft().getX() && next.getY() == currNode.getLeft().getY()) {
+          dir = LEFT;
+        }
       }
     }
     if ( dir == UP ) {
@@ -88,39 +102,39 @@ public class Blinky extends Ghost {
     }
   }
 
-  /*public Node closest() {
-   float leftDist = (float)Integer.MAX_VALUE;
-   float rightDist = (float)Integer.MAX_VALUE;
-   float upDist = (float)Integer.MAX_VALUE;
-   float downDist = (float)Integer.MAX_VALUE;
-   if (currNode.getLeft() != null) {
-   leftDist = dist2(pacman.getX(), (float)currNode.getLeft().getX(), pacman.getY(), (float)currNode.getLeft().getY());
-   }
-   if (currNode.getRight() != null) {
-   rightDist = dist2(pacman.getX(), (float)currNode.getRight().getX(), pacman.getY(), (float)currNode.getRight().getY());
-   }
-   if (currNode.getUp() != null) {
-   upDist = dist2(pacman.getX(), (float)currNode.getUp().getX(), pacman.getY(), (float)currNode.getUp().getY());
-   }
-   if (currNode.getDown() != null) {
-   downDist = dist2(pacman.getX(), (float)currNode.getDown().getX(), pacman.getY(), (float)currNode.getDown().getY());
-   }
-   float closestDist = Math.min(Math.min(leftDist, rightDist), Math.min(upDist, downDist));
-   
-   if (leftDist == closestDist) {
-   return currNode.getLeft();
-   }
-   if (rightDist == closestDist) {
-   return currNode.getRight();
-   }
-   if (upDist == closestDist) {
-   return currNode.getUp();
-   }
-   if (downDist == closestDist) {
-   return currNode.getDown();
-   }
-   return null;
-   }*/
+  public Node closest() {
+    float leftDist = (float)Integer.MAX_VALUE;
+    float rightDist = (float)Integer.MAX_VALUE;
+    float upDist = (float)Integer.MAX_VALUE;
+    float downDist = (float)Integer.MAX_VALUE;
+    if (currNode.getLeft() != null) {
+      leftDist = dist2(pacman.getX(), (float)currNode.getLeft().getX(), pacman.getY(), (float)currNode.getLeft().getY());
+    }
+    if (currNode.getRight() != null) {
+      rightDist = dist2(pacman.getX(), (float)currNode.getRight().getX(), pacman.getY(), (float)currNode.getRight().getY());
+    }
+    if (currNode.getUp() != null) {
+      upDist = dist2(pacman.getX(), (float)currNode.getUp().getX(), pacman.getY(), (float)currNode.getUp().getY());
+    }
+    if (currNode.getDown() != null) {
+      downDist = dist2(pacman.getX(), (float)currNode.getDown().getX(), pacman.getY(), (float)currNode.getDown().getY());
+    }
+    float closestDist = Math.min(Math.min(leftDist, rightDist), Math.min(upDist, downDist));
+
+    if (leftDist == closestDist) {
+      return currNode.getLeft();
+    }
+    if (rightDist == closestDist) {
+      return currNode.getRight();
+    }
+    if (upDist == closestDist) {
+      return currNode.getUp();
+    }
+    if (downDist == closestDist) {
+      return currNode.getDown();
+    }
+    return null;
+  }
 }
 
 

@@ -13,8 +13,8 @@ public class MazeSolver {
     this.end = end;
     sx = start.getX()/20 - 1;
     sy = start.getY()/20 - 1;
-    ex = start.getX()/20 - 1;
-    ey = start.getY()/20 - 1;
+    ex = end.getX()/20 - 1;
+    ey = end.getY()/20 - 1;
   }
 
   private class coord {
@@ -100,32 +100,32 @@ public class MazeSolver {
   public void solve() {
     Frontier f = new Frontier();
     coord now = new coord(sx, sy);
-    while (now.getX () != ex && now.getY() != ey ) {
+    //System.out.print(nodes[now.getX()][now.getY()]+",");
+    //System.out.print(nodes[ex][ey]);
+    while (nodes[now.getX()][now.getY()]!=nodes[ex][ey]) {
       f.addCoords(now);
       if (f.isEmpty()) {
         return;
       }
       now = f.remove();
+      System.out.println(now);
     }
     solutions = new int[now.getSize()*2];
     int n = solutions.length;
     while ( n > 0 ) {
-      //System.out.println(Arrays.toString(solution));
       solutions[--n]=now.getY();
       solutions[--n]=now.getX();
       now=now.getPrev();
     }
+    //System.out.println(Arrays.toString(solutions));
   }
 
   public Node nextStep() {
-    if ( solutions.length>1 ) {
-      return new Node(solutions[2]*20+30, solutions[3]*20+30);
-    }
-    return null;
+    return new Node(solutions[2]*20+30, solutions[3]*20+30);
   }
 
   public boolean validSquare(int x, int y) {
-    return nodes[x][y]!=null;
+    return nodes[y][x]==null;
   }
 }
 
