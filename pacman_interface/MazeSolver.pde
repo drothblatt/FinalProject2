@@ -1,20 +1,21 @@
 import java.util.*;
 import java.io.*;
 public class MazeSolver {
-  Node[][] nodes;
+  String[][] grid;
   int[] solutions;
   Node start; 
   Node end;
   int sx, sy, ex, ey;
 
-  public MazeSolver(Node[][] n, Node now, Node end) {
-    nodes = n;
+  public MazeSolver(String[][] n, Node now, Node end) {
+    grid = n;
     start = now;
     this.end = end;
     sx = start.getX()/20 - 1;
     sy = start.getY()/20 - 1;
     ex = end.getX()/20 - 1;
     ey = end.getY()/20 - 1;
+    grid[ey][ex] = "E";
   }
 
   private class coord {
@@ -102,7 +103,7 @@ public class MazeSolver {
     coord now = new coord(sx, sy);
     //System.out.print(nodes[now.getX()][now.getY()]+",");
     //System.out.print(nodes[ex][ey]);
-    while (nodes[now.getX()][now.getY()]!=nodes[ex][ey]) {
+    while (!grid[now.getY()][now.getX()].equals("E")) {
       f.addCoords(now);
       if (f.isEmpty()) {
         return;
@@ -125,7 +126,7 @@ public class MazeSolver {
   }
 
   public boolean validSquare(int x, int y) {
-    return nodes[y][x]==null;
+    return !grid[y][x].equals("#");
   }
 }
 

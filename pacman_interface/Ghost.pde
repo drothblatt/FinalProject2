@@ -58,7 +58,7 @@ public class Blinky extends Ghost {
   } 
 
   public void move() {
-    MazeSolver m = new MazeSolver(nodeMap.nodeGrid, currNode, pacman.currNode);
+    MazeSolver m = new MazeSolver(nodeMap.strGrid, currNode, pacman.currNode);
     //System.out.println(currNode);
     //System.out.println(pacman.currNode);
     int mode = 0;
