@@ -151,7 +151,6 @@ void endMenu(){
   fill(0, 0, 0, 100);
   rect(50, 50, 500, 560);
   fill(255, 204, 0);
-  textAlign(CENTER);
   text("PACMAN", 325, 100);
   textSize(12);
   text("David Rothblatt - Elias Saric - Gary Zhu", 325, 125);
