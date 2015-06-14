@@ -30,6 +30,14 @@ abstract class Ghost {
     ellipse ( x, y, 32, 32 );
   }
 
+  public float getX() {
+    return x;
+  }
+
+  public float getY() {
+    return y;
+  }
+
   public void kill() {
     for ( int i = -16; i <= 16; i++) {
       if ( square(pacman.getX()-(x+i))+square(pacman.getY()-(y+i))<=square(16)) {
@@ -37,7 +45,7 @@ abstract class Ghost {
       }
     }
   }
-
+  
   public float square(float i) {
     return i*i;
   }
@@ -58,7 +66,7 @@ public class Blinky extends Ghost {
   } 
 
   public void move() {
-    MazeSolver m = new MazeSolver(nodeMap.nodeGrid, currNode, pacman.currNode);
+    MazeSolver m = new MazeSolver(nodeMap.strGrid, currNode, pacman.currNode);
     //System.out.println(currNode);
     //System.out.println(pacman.currNode);
     int mode = 0;
