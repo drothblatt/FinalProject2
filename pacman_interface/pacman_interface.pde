@@ -151,14 +151,14 @@ void endMenu(){
   fill(0, 0, 0, 100);
   rect(50, 50, 500, 560);
   fill(255, 204, 0);
-  text("PACMAN", 325, 100);
+  text("PACMAN", 100, 100);
   textSize(12);
-  text("David Rothblatt - Elias Saric - Gary Zhu", 325, 125);
+  text("David Rothblatt - Elias Saric - Gary Zhu", 100, 125);
   textSize(20);
-  text("GAME OVER", 325, 400);
-  text("Your Options", 325, 550); 
-  text("Press R: Play Again", 325, 600);
-  text("Press ESC: See This Window Disappear", 325, 700);
+  text("GAME OVER", 100, 400);
+  text("Your Options", 100, 550); 
+  text("Press R: Play Again", 100, 600);
+  text("Press ESC: See This Window Disappear", 100, 700);
 }
 
 
