@@ -91,9 +91,6 @@ void draw() {
 
     // GRID //
   }
-  String[][] maze = NodeMap.strGrid;
-  MazeSolver2 s = new MazeSolver2(maze, pacman, ghosts[0]);
-  s.solve();
 }
 
 void pauseMenu() {
