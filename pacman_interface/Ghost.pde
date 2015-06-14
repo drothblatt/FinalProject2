@@ -61,11 +61,7 @@ public class Blinky extends Ghost {
     MazeSolver m = new MazeSolver(nodeMap.strGrid, currNode, pacman.currNode);
     //System.out.println(currNode);
     //System.out.println(pacman.currNode);
-    int mode = 0;
-    if ( mode == 0){
-      m.solve();
-    }
-    mode++;
+    m.solve();
     kill();
     //the first part is to find which node is closest to the pacman
     if (x == currNode.getX() && y == currNode.getY()) {

@@ -172,7 +172,7 @@ class Pacman {
   public float getY() {
     return y;
   }
-  
+
   public Node getCurrNode() {
     return currNode;
   }

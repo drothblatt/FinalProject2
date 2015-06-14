@@ -103,7 +103,7 @@ public class MazeSolver {
     coord now = new coord(sx, sy);
     //System.out.print(nodes[now.getX()][now.getY()]+",");
     //System.out.print(nodes[ex][ey]);
-    while (!grid[now.getY()][now.getX()].equals("E")) {
+    while (!grid[now.getY ()][now.getX()].equals("E")) {
       f.addCoords(now);
       if (f.isEmpty()) {
         return;
