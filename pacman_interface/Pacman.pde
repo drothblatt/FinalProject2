@@ -31,6 +31,8 @@ class Pacman {
     noStroke();
     fill(c);
 
+    if (x == 400) kill();
+
     // PACMAN SHAPE //
 
     if (nextDir == 0) {

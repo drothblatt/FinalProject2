@@ -7,8 +7,14 @@ PImage map;
 AudioPlayer player;
 AudioPlayer player2;
 Minim minim, minim2;
-int moves = 0;
-int MODE = 1; 
+int moves;
+
+final int PLAY = 0;
+final int START_MENU = 1; 
+final int PAUSE_MENU = 2;
+final int END_MENU = 3;
+int MODE;
+
 Ghost[] ghosts = { 
   new Blinky( 300, 251, pacman, nodeMap ), 
   new Clyde ( 340, 308, pacman, nodeMap ), 
@@ -22,6 +28,9 @@ Ghost[] ghosts = {
     map = loadImage("map.jpg");   
     nodeMap = new NodeMap();
     pacman = new Pacman(310, 490, nodeMap);
+    MODE = START_MENU; 
+    moves = 0;
+
     //System.out.println(nodeMap);
     /*
     minim = new Minim(this);
@@ -44,9 +53,13 @@ Ghost[] ghosts = {
 
 
 void draw() {
-  if (MODE == 0) {
+  if (MODE == START_MENU) {
+    startMenu();
+  } else if (MODE == PAUSE_MENU) {
     pauseMenu();
-  } else {
+  } else if (MODE == END_MENU) {
+    endMenu();
+  } else{
     background(0);
     image(map, 20, 20);
     fill(255, 204, 0);
@@ -74,14 +87,19 @@ void draw() {
       }
     } */
     pacman.draw();
+    
+    if (pacman.getLives() <= 0){
+      MODE = END_MENU;
+    }
+    
     //theGrid();
 
     // GRID // 
 
+  /*
     fill(0);
     stroke(255);
 
-    /*
     for (int i = 20; i <= 580; i += 20) { // vertically
      line(i, 20, i, 640);
      }
@@ -109,6 +127,40 @@ void pauseMenu() {
   text("Press ESC to quit", 100, 575);
 }
 
+void startMenu(){
+  fill(0, 0, 0, 100);
+  rect(50, 50, 500, 560);
+  fill(255, 204, 0);
+  textSize(18);
+  text("PACMAN", 100, 100);
+  textSize(12);
+  text("David Rothblatt - Elias Saric - Gary Zhu", 100, 125);
+  textSize(16);
+  text("How To Play:", 100, 225);
+  text("ARROWKEYS to move", 150, 275);
+  text("SPACEBAR to pause", 150, 325);
+  text("ESC to exit window", 150, 375);
+  textSize(40);
+  text("Press S to Start!", 100, 500);
+}
+
+void endMenu(){
+  clear();
+  background(0);
+  fill(0, 0, 0, 100);
+  rect(50, 50, 500, 560);
+  fill(255, 204, 0);
+  textAlign(CENTER);
+  text("PACMAN", 325, 100);
+  textSize(12);
+  text("David Rothblatt - Elias Saric - Gary Zhu", 325, 125);
+  textSize(20);
+  text("GAME OVER", 325, 400);
+  text("Your Options", 325, 550); 
+  text("Press R: Play Again", 325, 600);
+  text("Press ESC: See This Window Disappear", 325, 700);
+}
+
 
 void theGrid() {
   for ( int i = 0; i <  nodeMap.strGrid[0].length; i++) {
@@ -123,26 +175,50 @@ void theGrid() {
 }
 
 void keyPressed() {
-  if (keyCode==38) {
-    pacman.setNextDirection( 3*HALF_PI );//up
+  
+  if (keyCode == 82){
+    restart();
+    MODE = PLAY;
   }
-  if (keyCode==40) {
-    pacman.setNextDirection( HALF_PI);//down
+  
+  if (MODE == PLAY){
+    if (keyCode==38) {
+      pacman.setNextDirection( 3*HALF_PI );//up 
+    }
+    if (keyCode==40) {
+      pacman.setNextDirection( HALF_PI);//down
+    }
+    if (keyCode==37) {
+      pacman.setNextDirection( PI );//left
+    }
+    if (keyCode==39) {
+      pacman.setNextDirection( TWO_PI );//right
+    }
+    if (keyCode == 32){//spacebar
+      MODE = PAUSE_MENU;
+    }    
+  } 
+  else if (MODE == PAUSE_MENU){
+    if (keyCode == 32){//spacebar
+      MODE = PLAY;
+    }    
   }
-  if (keyCode==37) {
-    pacman.setNextDirection( PI );//left
-  }
-  if (keyCode==39) {
-    pacman.setNextDirection( TWO_PI );//right
-  }
-
-  if (keyCode == 32) { // spacebar
-    if (MODE == 0) {
-      MODE = 1;
-    } else {
-      MODE = 0;
+  else if (MODE == START_MENU){
+    if (keyCode == 83){
+      MODE = PLAY;
     }
   }
+  else if (MODE == END_MENU){
+    if (keyCode == 82){
+      restart();
+      MODE = PLAY;
+    }
+  }
+  
+}
+
+void restart(){
+  setup();
 }  
 
 void mouseClicked() {
