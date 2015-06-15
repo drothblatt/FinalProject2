@@ -206,6 +206,19 @@ public class Inky extends Ghost {
     super(x, y, color(0, 0, 255), pm, nm );
     blinky = blink;
   } 
+  
+  void draw(){
+    if (dir == UP){
+      copy(gSprites, 2, 41, 14, 14, (int)x-15, (int)y-15, 32, 32);
+    } else if (dir == DOWN){
+      copy(gSprites, 42, 41, 14, 14, (int)x-15, (int)y-15, 32, 32);
+    } else if (dir == LEFT){
+      copy(gSprites, 82, 41, 14, 14, (int)x-15, (int)y-15, 32, 32);
+    } else if (dir == RIGHT){
+      copy(gSprites, 122, 41, 14, 14, (int)x-15, (int)y-15, 32, 32);
+    }
+  }
+    
 
   public void move() {
     if ( pacman.getDotsEaten()>=30 && should == 0 ) {
@@ -282,6 +295,18 @@ public class Clyde extends Ghost {
   public Clyde(float x, float y, Pacman pm, NodeMap nm) {
     super(x, y, color(255, 128, 0), pm, nm );
   } 
+  
+  void draw(){
+    if (dir == UP){
+      copy(gSprites, 2, 61, 14, 14, (int)x-15, (int)y-15, 32, 32);
+    } else if (dir == DOWN){
+      copy(gSprites, 42, 61, 14, 14, (int)x-15, (int)y-15, 32, 32);
+    } else if (dir == LEFT){
+      copy(gSprites, 82, 61, 14, 14, (int)x-15, (int)y-15, 32, 32);
+    } else if (dir == RIGHT){
+      copy(gSprites, 122, 61, 14, 14, (int)x-15, (int)y-15, 32, 32);
+    }
+  }
 
   public void move() {
     if ( nodeMap.totDots - pacman.getDotsEaten() <= nodeMap.totDots/3 && should == 0 ) {
@@ -297,6 +322,18 @@ public class Pinky extends Ghost {
   public Pinky(float x, float y, Pacman pm, NodeMap nm) {
     super(x, y, color(255, 200, 200), pm, nm );
   } 
+  
+  void draw(){
+    if (dir == UP){
+      copy(gSprites, 2, 21, 14, 14, (int)x-15, (int)y-15, 32, 32);
+    } else if (dir == DOWN){
+      copy(gSprites, 42, 21, 14, 14, (int)x-15, (int)y-15, 32, 32);
+    } else if (dir == LEFT){
+      copy(gSprites, 82, 21, 14, 14, (int)x-15, (int)y-15, 32, 32);
+    } else if (dir == RIGHT){
+      copy(gSprites, 122, 21, 14, 14, (int)x-15, (int)y-15, 32, 32);
+    }
+  }
 
   public void move() {
     if ( should == 0 ) {
