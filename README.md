@@ -32,21 +32,23 @@ Dev Log
   - Progress working with Nodes.
 
 5/29:
-Complete NodeGrid issues. 
-Nodes made (contains right, left, up, and down node references, x and y coordinates, accessor and mutator methods, toString) thx to now working NodeGrid.pde file 
+  - Complete NodeGrid issues. 
+  - Nodes made (contains right, left, up, and down node references, x and y coordinates, accessor and mutator methods,           toString) thx to now working NodeGrid.pde file 
+
 5/30:
-Checked the Nodes. 
-Planned next steps. 
-5/31:
-Got rid of Dot Class, made Dots a characteristic within Nodes, functional. 
-hasDot and hasBigDot booleans
-Established BigDots (worth extra points, makes ghosts eatable)
-Dots (regular and Big) properly drawn 
-Pacman movement improved. 
-Pacman movement now rail-based!!! 
-Pacman teleportation implemented. 
-Pacman’s mouth stays open when hits a wall. 
-Pacman now a circle at beginning as it should be. 
+  - Checked the Nodes. 
+  - Planned next steps. 
+
+<b> 5/31: </b>
+- Got rid of Dot Class, made Dots a characteristic within Nodes, functional. 
+    - hasDot and hasBigDot booleans
+    - Established BigDots (worth extra points, makes ghosts eatable)
+    - Dots (regular and Big) properly drawn 
+- Pacman movement improved. 
+    - Pacman movement now rail-based!!! 
+    - Pacman teleportation implemented. 
+    - Pacman’s mouth stays open when hits a wall. 
+    - Pacman now a circle at beginning as it should be. 
 
 6/1:
 Pacman animation improved:
