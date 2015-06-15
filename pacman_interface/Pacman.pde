@@ -17,6 +17,8 @@ class Pacman {
   private static final float DOWN =  HALF_PI;
   private static final float LEFT =  PI;
   private static final float RIGHT =  TWO_PI;
+  
+  int framecount = 40;
 
   public Pacman(float x, float y, NodeMap nodeMap) {
     r = 16;
@@ -87,11 +89,6 @@ class Pacman {
       eat(currNode.getDown());
     }
     if (currNode.getX() == x && currNode.getY() == y) {
-      /*if (currNode.hasDot()) {
-       score+=currNode.getVal();   
-       currNode.setDot(false);
-       ret = true;
-       }*/
       if (nextDir == UP && currNode.hasUp()) {
         dir = UP;
       }
@@ -121,6 +118,10 @@ class Pacman {
     } else {
       dir = 0;
     }
+    if ( framecount%30 == 0 ){
+      Sound.play("Pacman Siren.mp3");
+    }
+    framecount++;
     return ret;
   }
 

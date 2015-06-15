@@ -1,15 +1,15 @@
 import java.util.*;
 import ddf.minim.*;
 
+int hi = 0;
 Pacman pacman;
 NodeMap nodeMap;
 PImage map;
-AudioPlayer player;
-AudioPlayer player2;
-Minim minim, minim2;
 int moves = 0;
 int MODE = 1;
 Ghost[] ghosts;
+Sound sound;
+Minim minim;
 
 void setup() {
   size(650, 750);
@@ -22,24 +22,10 @@ void setup() {
   ghosts[1] = new Clyde ( 330, 310, pacman, nodeMap );
   ghosts[2] = new Inky ( 250, 310, pacman, nodeMap );
   ghosts[3] = new Pinky ( 290, 310, pacman, nodeMap );
-  //System.out.println(nodeMap);
-  /*
-    minim = new Minim(this);
-   minim2 = new Minim(this);
-   player = minim.loadFile("Pacman Opening Song.mp3");
-   player2 = minim.loadFile("Pacman Waka Waka.mp3");
-   player.play();
-   draw();
-   try {
-   Thread.sleep(3800);
-   }
-   catch(Exception e) {
-   System.out.println("nope");
-   }
-   player = minim.loadFile("Pacman Siren.mp3");
-   player.loop();
-   */
-  //frameRate(40);
+  minim = new Minim(this);
+  sound.loadSounds(minim);
+  
+  frameRate(40);
   fill(0);
   stroke(255);
   for (int i = 20; i <= 580; i += 20) { // vertically
