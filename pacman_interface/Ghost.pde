@@ -144,7 +144,7 @@ public class Blinky extends Ghost {
   } 
 
   void draw() {
-    if (dir == UP) {
+    if (dir == UP || dir == 0) {
       copy(gSprites, 2, 1, 14, 14, (int)x-15, (int)y-15, 32, 32);
     } else if (dir == DOWN) {
       copy(gSprites, 42, 1, 14, 14, (int)x-15, (int)y-15, 32, 32);
@@ -206,7 +206,7 @@ public class Inky extends Ghost {
   } 
 
   void draw() {
-    if (dir == UP) {
+    if (dir == UP || dir == 0) {
       copy(gSprites, 2, 41, 14, 14, (int)x-15, (int)y-15, 32, 32);
     } else if (dir == DOWN) {
       copy(gSprites, 42, 41, 14, 14, (int)x-15, (int)y-15, 32, 32);
@@ -296,7 +296,7 @@ public class Clyde extends Ghost {
   } 
 
   void draw() {
-    if (dir == UP) {
+    if (dir == UP || dir == 0) {
       copy(gSprites, 2, 61, 14, 14, (int)x-15, (int)y-15, 32, 32);
     } else if (dir == DOWN) {
       copy(gSprites, 42, 61, 14, 14, (int)x-15, (int)y-15, 32, 32);
@@ -323,7 +323,7 @@ public class Pinky extends Ghost {
   } 
 
   void draw() {
-    if (dir == UP) {
+    if (dir == UP || dir == 0) {
       copy(gSprites, 2, 21, 14, 14, (int)x-15, (int)y-15, 32, 32);
     } else if (dir == DOWN) {
       copy(gSprites, 42, 21, 14, 14, (int)x-15, (int)y-15, 32, 32);
@@ -356,7 +356,7 @@ public class Pinky extends Ghost {
     if (pacman.dir == DOWN) {
       xmod = 40.0;
     }
-    if (x == currNode.getX() && y == currNode.getY()) {
+    if (x == currNode.getX() && y == currNode.getY() && should > 0) {
       Node next = closest2(pacman.getX()+xmod, pacman.getY()+ymod);//m.nextStep();
       if ( currNode.hasUp()) {
         if (next.getX() == currNode.getUp().getX() && next.getY() == currNode.getUp().getY()) {
