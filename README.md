@@ -31,10 +31,12 @@ Dev Log
 =======
   
 <b>5/25: </b>
+
     - Basic Setup: pacman_interface.pde, Pacman.pde, Ghost.pde all established with minor aspects. 
     - Playing with Key methods for Pacman movement. 
   
 <b>5/27:  </b>
+
     - More w/ Framework: Added blank pacman map (map.jpg) for our background. Made gridlines (31x28 w/ each square being 20x20       pixels) in order to allow us to work with nodes. 
     - Established Dot.pde to make dots. Played with dot placement and setup. 
     - Played with Key methods for Pacman movement. 
@@ -44,14 +46,17 @@ Dev Log
     - Node.pde written; basis of our rail-system - vital for pacman/ghosts movement. 
   
 <b>5/28: </b>
+
     - Pacman animation completed. 
     - Progress working with Nodes.
   
 <b>5/29: </b> 
+
     - Complete NodeGrid issues. 
     - Nodes made (contains right, left, up, and down node references, x and y coordinates, accessor and mutator methods,             toString) thx to now working NodeGrid.pde file 
   
 <b>5/30:</b>
+
     - Checked the Nodes. 
     - Planned next steps. 
   
