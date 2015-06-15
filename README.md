@@ -117,7 +117,7 @@ Dev Log
   - Worked on ghost movement and was able to get some of them working with bugs.
   - Ghost sprites implemented (eyes move, etc) - pretty cool actually. 
 
-<b>6/15:<b>
+<b>6/15:</b>
   - Finished the rest of the ghost movement because “we are the three code wizzies” - Gary
   - We completed the long and hard task of recreating a bootlegged version of our type of pacman.
   - We have one sound (two if you reach the end, which is no easy task).
