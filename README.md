@@ -14,11 +14,11 @@ David Rothblatt, Elias Saric, Gary Zhu
 Dev Log
 =======
 
-5/25:
+<b>5/25: </b>
   - Basic Setup: pacman_interface.pde, Pacman.pde, Ghost.pde all established with minor aspects. 
   - Playing with Key methods for Pacman movement. 
 
-5/27: 
+<b>5/27:  </b>
   - More w/ Framework: Added blank pacman map (map.jpg) for our background. Made gridlines (31x28 w/ each square being 20x20       pixels) in order to allow us to work with nodes. 
   - Established Dot.pde to make dots. Played with dot placement and setup. 
   - Played with Key methods for Pacman movement. 
@@ -27,19 +27,19 @@ Dev Log
   - NodeMap.pde written to scan the grid.txt file and establish nodes (buggy)
   - Node.pde written; basis of our rail-system - vital for pacman/ghosts movement. 
 
-5/28:
+<b>5/28: </b>
   - Pacman animation completed. 
   - Progress working with Nodes.
 
-5/29:
+<b>5/29: </b> 
   - Complete NodeGrid issues. 
   - Nodes made (contains right, left, up, and down node references, x and y coordinates, accessor and mutator methods,           toString) thx to now working NodeGrid.pde file 
 
-5/30:
+<b>5/30:</b>
   - Checked the Nodes. 
   - Planned next steps. 
 
-<b> 5/31: </b>
+<b>5/31:</b>
 - Got rid of Dot Class, made Dots a characteristic within Nodes, functional. 
     - hasDot and hasBigDot booleans
     - Established BigDots (worth extra points, makes ghosts eatable)
@@ -50,31 +50,36 @@ Dev Log
     - Pacman’s mouth stays open when hits a wall. 
     - Pacman now a circle at beginning as it should be. 
 
-6/1:
-Pacman animation improved:
-Pacman’s mouth stays open when hits a wall (for a short while we messed it up, but it’s good again now)
-Point system implemented. 
-Lives/Scoring System now displayed. 
-Dots now eaten by Pacman
-Altered dot placement on map so that it looks more like original. 
-Played with sound (opening song, waka-waka).
-6/2:
-Overall formatting improvements. 
-Decided to follow Pacman more closely and remove the extraneous dots in the center and pathway for teleportation. 
-Attempted to fix error where, when Pacman teleports, it leaves behind a dot that must be eaten by going back (still working on it).
-6/3:
-Worked more on sound. Struggled. 
-Started work on the ghosts 
-Basic skeletons of what we need were made today
-Blinky, Inky, Pinky, Clyde (why break the rhyme?) all extend Ghost class
-6/4:
-discussion over what we should do for the ghost movement
-no one has a clear idea
-6/5:
-Consulted Mr.K briefly in class to clarify a few things
-Ideas became clearer 
-Incl. plan for speeding up the game (removing grid lines, etc.)
-Outlined next steps. 
+<b>6/1:</b>
+  - Pacman animation improved:
+      - Pacman’s mouth stays open when hits a wall (for a short while we messed it up, but it’s good again now)
+      - Point system implemented. 
+      - Lives/Scoring System now displayed. 
+  - Dots now eaten by Pacman
+  - Altered dot placement on map so that it looks more like original. 
+  - Played with sound (opening song, waka-waka).
+
+<b>6/2: </b>
+  - Overall formatting improvements. 
+  - Decided to follow Pacman more closely and remove the extraneous dots in the center and pathway for teleportation. 
+  - Attempted to fix error where, when Pacman teleports, it leaves behind a dot that must be eaten by going back (still working   on it).
+
+<b>6/3: </b>
+  - Worked more on sound. Struggled. 
+  - Started work on the ghosts 
+      - Basic skeletons of what we need were made today
+      - Blinky, Inky, Pinky, Clyde (why break the rhyme?) all extend Ghost class
+  
+<b>6/4: </b>
+  - Discussed over what we should do for the ghost movement
+    - No clear, solid ideas presented   
+
+<b>6/5: </b>
+  - Consulted Mr.K briefly in class to clarify a few things
+    - Ideas became clearer 
+      - Incl. plan for speeding up the game (removing grid lines, etc.)
+  - Outlined next steps. 
+
 6/6:
 Worked on ghost movement, each of us tried to implement our own ghetto algorithms for ghost movement. No success. Nothing worth committing. 
 6/7:
