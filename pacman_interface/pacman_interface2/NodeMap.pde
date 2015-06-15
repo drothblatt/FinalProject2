@@ -2,56 +2,46 @@ import java.util.*;
 import java.io.*;
 
 class NodeMap {
-
+  
   Node[][] nodeGrid;
   String[][] strGrid;
   String[] lines;
-  int totDots=0;
   
   public NodeMap() {
     strGrid = new String[31][28];
     createStringGrid();
     createNodeGrid();
-    for ( int i = 0; i < nodeGrid.length; i++){
-      for ( int j = 0; j < nodeGrid[0].length; j++){
-          if (nodeGrid[i][j]!=null){
-            totDots++; 
-          }
-      }
-    }
   }
-
+  
   public String toString() {
     String out = "";
     for (int i = 0; i < nodeGrid.length; i++) {
       for (int j = 0; j < nodeGrid[0].length; j++) {
-        if ( nodeGrid[i][j]!=null) {
-          out += nodeGrid[i][j];
+        if ( nodeGrid[i][j]!=null){
+        out += nodeGrid[i][j];
         }
       }
       out += "\n";
     }
     return out;
   }
-
-  private void createStringGrid() { // Loads the text file into a String 2d array
+  
+  private void createStringGrid() {
     try {
       lines = loadStrings("grid.txt");
-      for ( int i = 0; i < lines.length; i ++ ) {
-        for ( int j = 0; j < lines[i].length (); j++ ) {
-          strGrid[i][j]=lines[i].substring(j, j+1);
-        }
+      for ( int i = 0 ; i < lines.length ; i ++ ){
+         for ( int j = 0; j < lines[i].length(); j++ ){
+            strGrid[i][j]=lines[i].substring(j,j+1);
+         } 
       }
-    }
-    catch (Exception e) {
+    }catch (Exception e) {
       e.printStackTrace();
       System.out.println("File not found");
     }
   }
-
-  private void createNodeGrid() { // Uses the String 2d array to fill in a grid
+  
+  private void createNodeGrid() {
     nodeGrid = new Node[31][28];
-    // Populate the node array
     for (int i = 0; i < strGrid.length; i++) {
       for (int j = 0; j < strGrid[0].length; j++) {
         if (! strGrid[i][j].equals("x")) {
@@ -59,7 +49,6 @@ class NodeMap {
         }
       }
     }
-    // Connect nodes to their neighbors
     for (int i = 1; i < nodeGrid.length - 1; i++) {
       for (int j = 1; j < nodeGrid[0].length - 1; j++) {
         if (nodeGrid[i][j] != null) {
@@ -80,9 +69,10 @@ class NodeMap {
       }
     }
   }
-
-  public Node[][] getNodeGrid() {
-    return nodeGrid;
+  
+  public Node[][] getNodeGrid(){
+    return nodeGrid; 
   }
+  
+  
 }
-
