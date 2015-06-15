@@ -335,7 +335,7 @@ public class Pinky extends Ghost {
   }
 
   public void move() {
-    if ( should == 0 ) {
+    if ( should == 0 && pacman.getDotsEaten() == 5 ) {
       jump();
       should ++;
     }
@@ -351,6 +351,7 @@ public class Pinky extends Ghost {
     }
     if (pacman.dir == UP) {
       xmod = -40.0;
+      ymod = -40.0;
     }
     if (pacman.dir == DOWN) {
       xmod = 40.0;
