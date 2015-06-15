@@ -17,6 +17,9 @@ class Pacman {
   private static final float DOWN =  HALF_PI;
   private static final float LEFT =  PI;
   private static final float RIGHT =  TWO_PI;
+  
+  int framecount = 40;
+  int dotseaten = 0;
 
   public Pacman(float x, float y, NodeMap nodeMap) {
     r = 16;
@@ -30,8 +33,6 @@ class Pacman {
   public void draw() {
     noStroke();
     fill(c);
-
-    if (x == 400) kill();
 
     // PACMAN SHAPE //
 
@@ -49,7 +50,7 @@ class Pacman {
 
     // MOVING MOUTH //  ** similar something I found on OpenProcessing, but my own version
     if (closingMouth) {
-      arcChanges++;
+      arcChanges++;  
       if (arcChanges == 4) {
         closingMouth = false;
       }
@@ -76,22 +77,29 @@ class Pacman {
     if (nextDir == dir + PI || nextDir == dir - PI) {
       dir = nextDir;
     }
+    if (dir == UP && currNode.getUp() != null ) {
+      eat(currNode.getUp());
+    }
+    if (dir == LEFT && currNode.getLeft() != null ) {
+      eat(currNode.getLeft());
+    }
+    if (dir == RIGHT && currNode.getRight() != null ) {
+      eat(currNode.getRight());
+    }
+    if (dir == DOWN && currNode.getDown() != null ) {
+      eat(currNode.getDown());
+    }
     if (currNode.getX() == x && currNode.getY() == y) {
-      if (currNode.hasDot()) {
-        score+=currNode.getVal();   
-        currNode.setDot(false);
-        ret = true;
-      }
-      if (nextDir == UP && currNode.getUp() != null) {
+      if (nextDir == UP && currNode.hasUp()) {
         dir = UP;
       }
-      if (nextDir == DOWN && currNode.getDown() != null) {
+      if (nextDir == DOWN && currNode.hasDown()) {
         dir = DOWN;
       }
-      if (nextDir == LEFT && currNode.getLeft() != null) {
+      if (nextDir == LEFT && currNode.hasLeft()) {
         dir = LEFT;
       }
-      if (nextDir == RIGHT && currNode.getRight() != null) {
+      if (nextDir == RIGHT && currNode.hasRight()) {
         dir = RIGHT;
       }
     }
@@ -100,20 +108,37 @@ class Pacman {
     } else if (x == 570 && y == 310) {
       x = 30;
     }
-    if ( dir == UP && ((currNode.getUp() == null && currNode.getY() != y) || currNode.getUp() != null)) {
+    if ( dir == UP && ((currNode.getUp() == null && currNode.getY() != y) || currNode.hasUp())) {
       y = y - 2.5;
-    } else if ( dir == DOWN &&  ((currNode.getDown() == null && currNode.getY() != y) || currNode.getDown() != null)) {
+    } else if ( dir == DOWN &&  ((currNode.getDown() == null && currNode.getY() != y) || currNode.hasDown())) {
       y = y + 2.5;
-    } else if ( dir == LEFT && ((currNode.getLeft() == null && currNode.getX() != x) || currNode.getLeft() != null)) {
+    } else if ( dir == LEFT && ((currNode.getLeft() == null && currNode.getX() != x) || currNode.hasLeft())) {
       x = x - 2.5;
-    } else if ( dir == RIGHT && ((currNode.getRight() == null && currNode.getX() != x) || currNode.getRight() != null)) {
+    } else if ( dir == RIGHT && ((currNode.getRight() == null && currNode.getX() != x) || currNode.hasRight())) {
       x = x + 2.5;
     } else {
       dir = 0;
     }
+    if ( framecount%30 == 0 ){
+      Sound.play("Pacman Siren.mp3");
+    }
+    framecount++;
     return ret;
   }
 
+  public float square(float i) {
+    return i*i;
+  }
+
+  public void eat(Node n) {
+    if ( square(n.getX() - x ) + square(n.getY() - y ) <= square(16) ) {
+      if (n.hasDot()) {
+        score += n.getVal();
+        n.setDot(false);
+        dotseaten++;
+      }
+    }
+  }
   public boolean inBounds(float x, float y) {
     if (dir== 3*HALF_PI) {
       return (( y - 2.5 ) - 10)/20 >=1;
@@ -134,15 +159,15 @@ class Pacman {
   public void setScore(int points) {
     score = points;
   }
-  
-  public int getScore(){
+
+  public int getScore() {
     return score;
   }
 
-  public int getLives(){
+  public int getLives() {
     return lives;
   }
-  
+
   public float getX() {
     return x;
   }
@@ -151,19 +176,29 @@ class Pacman {
     return y;
   }
 
+  public Node getCurrNode() {
+    return currNode;
+  }
+
   public void setNextDirection(float i) {
     nextDir = i;
   }
 
-  public void kill() {
+  public void die() {
     lives--;
+    x = 310;
+    y = 490;
+    dir = 0;
+    nextDir = 0;
+    updateCurrentNode();
   }
 
   public void updateCurrentNode() {
     currNode = nodeMap.nodeGrid[(int)y/20-1][(int)x/20-1];
-    /*System.out.println(currNode);
-     System.out.println("(" + currNode.getX() + "," + currNode.getY() + ")");
-     System.out.println("(" + x + "," + y + ")");*/
+  }
+  
+  public int getDotsEaten(){
+    return dotseaten; 
   }
 }
 
