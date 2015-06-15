@@ -15,20 +15,21 @@ Dev Log
 =======
 
 5/25:
-Basic Setup: pacman_interface.pde, Pacman.pde, Ghost.pde all established with minor aspects. 
-Playing with Key methods for Pacman movement. 
+  - Basic Setup: pacman_interface.pde, Pacman.pde, Ghost.pde all established with minor aspects. 
+  - Playing with Key methods for Pacman movement. 
 
 5/27: 
-More w/ Framework: Added blank pacman map (map.jpg) for our background. Made gridlines (31x28 w/ each square being 20x20 pixels) in order to allow us to work with nodes. 
-Established Dot.pde to make dots. Played with dot placement and setup. 
-Played with Key methods for Pacman movement. 
-Basic Pacman Movement - keys don’t lead to movement, keys change direction. Movement not yet rail-based. 
-Made grid.txt that represent places pacman/ghosts can move to and places they cannot
-NodeMap.pde written to scan the grid.txt file and establish nodes (buggy)
-Node.pde written; basis of our rail-system - vital for pacman/ghosts movement. 
+  - More w/ Framework: Added blank pacman map (map.jpg) for our background. Made gridlines (31x28 w/ each square being 20x20       pixels) in order to allow us to work with nodes. 
+  - Established Dot.pde to make dots. Played with dot placement and setup. 
+  - Played with Key methods for Pacman movement. 
+  - Basic Pacman Movement - keys don’t lead to movement, keys change direction. Movement not yet rail-based. 
+  - Made grid.txt that represent places pacman/ghosts can move to and places they cannot
+  - NodeMap.pde written to scan the grid.txt file and establish nodes (buggy)
+  - Node.pde written; basis of our rail-system - vital for pacman/ghosts movement. 
+
 5/28:
-Pacman animation completed. 
-Progress working with Nodes.
+  - Pacman animation completed. 
+  - Progress working with Nodes.
 
 5/29:
 Complete NodeGrid issues. 
@@ -105,7 +106,7 @@ Finished the rest of the ghost movement because “we are the three code wizzies
 We completed the long and hard task of recreating a bootlegged version of our type of pacman.
 We have one sound (two if you reach the end, which is no easy task).
 
-How to Access our Project?
+How to Access Our Project?
 =========
 For all versions just use processing to open the pacman_interface.pde file in the pacman_interface folder located in our FinalProject2 repo (nothing needs to be changed or anything like that). 
 
