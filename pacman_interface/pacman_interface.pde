@@ -1,7 +1,6 @@
 import java.util.*;
 import ddf.minim.*;
 
-int hi = 0;
 Pacman pacman;
 NodeMap nodeMap;
 PImage map;
@@ -11,6 +10,7 @@ final int PLAY = 0;
 final int START_MENU = 1; 
 final int PAUSE_MENU = 2;
 final int END_MENU = 3;
+final int DONE = 4;
 int MODE;  
 
 Ghost[] ghosts;
@@ -47,6 +47,8 @@ void draw() {
     pauseMenu();
   } else if (MODE == END_MENU) {
     endMenu();
+  } else if (MODE == DONE) {
+    DONE();
   } else {
     background(0);
     image(map, 20, 20);
@@ -75,9 +77,14 @@ void draw() {
     }
     pacman.draw();
 
-    if (pacman.getLives() <= 0) {
+    if (pacman.getLives() < 0) {
       MODE = END_MENU;
+      Sound.play("Pacman Dies.mp3");
     }
+
+    if (pacman.getDotsEaten() == nodeMap.totDots ) {
+      MODE = DONE;
+    } 
   }
 }
 
@@ -124,10 +131,26 @@ void endMenu() {
   textSize(12);
   text("David Rothblatt - Elias Saric - Gary Zhu", 100, 125);
   textSize(20);
+  text("Score:"+pacman.getScore(), 100, 260);
   text("GAME OVER", 100, 400);
   text("Your Options", 100, 550); 
   text("Press R: Play Again", 100, 600);
   text("Press ESC: See This Window Disappear", 100, 700);
+}
+
+void DONE(){
+  clear();
+  background(0);
+  fill(0, 0, 0, 100);
+  rect(50, 50, 500, 560);
+  fill(255, 204, 0);
+  image(loadImage("rsz_youwin.jpg"), 20, 20);
+  textSize(60);
+  text("Congratulations!", 100, 100);
+  textSize(40);
+  text(" You have gotten ALL the Dots", 40 ,200 );
+  textSize(30);
+  text("Press 'R' to play AGAIN!", 150, 600);
 }
 
 void theGrid() {
@@ -173,7 +196,7 @@ void keyPressed() {
     if (keyCode == 83) {
       MODE = PLAY;
     }
-  } else if (MODE == END_MENU) {
+  } else if (MODE == END_MENU || MODE == DONE) {
     if (keyCode == 82) {
       restart();
       MODE = PLAY;

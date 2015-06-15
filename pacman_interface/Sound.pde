@@ -12,7 +12,8 @@ public static class Sound {
   private static String[] soundNames_ = new String[] {
     "Pacman Opening Song.mp3", 
     "Pacman Siren.mp3", 
-    "Pacman Waka Waka.mp3"
+    "Pacman Waka Waka.mp3",
+    "Pacman Dies.mp3"
   };
   private static HashMap sounds_;
 
