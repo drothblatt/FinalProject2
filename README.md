@@ -71,9 +71,9 @@ Dev Log
       - Pacman’s mouth stays open when hits a wall (for a short while we messed it up, but it’s good again now)
       - Point system implemented. 
       - Lives/Scoring System now displayed. 
-    - Dots now eaten by Pacman
-    - Altered dot placement on map so that it looks more like original. 
-    - Played with sound (opening song, waka-waka).
+  - Dots now eaten by Pacman
+  - Altered dot placement on map so that it looks more like original. 
+  - Played with sound (opening song, waka-waka).
   
 <b>6/2: </b>
   - Overall formatting improvements. 
@@ -88,7 +88,7 @@ Dev Log
     
 <b>6/4: </b>
   - Discussed over what we should do for the ghost movement
-      - No clear, solid ideas presented   
+    - No clear, solid ideas presented   
   
 <b>6/5: </b>
   - Consulted Mr.K briefly in class to clarify a few things
