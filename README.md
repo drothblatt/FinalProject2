@@ -143,14 +143,17 @@ How to Access Our Project?
   For all versions just use processing to open the pacman_interface.pde file in the pacman_interface folder located in our       FinalProject2 repo (nothing needs to be changed or anything like that). 
 
   - <b>First Working Version: </b>
+    - Features: Setup, Pacman Movement & Anmiation & Teleportation, Dots (although they aren't eatable just yet). 
     - working_version_1 branch:
         https://github.com/drothblatt/FinalProject2/tree/working_version_1
 
   - <b>Second Working Version: </b>
+    - Features: Pacman now eats dots, Score & Lives are counted and displayed, Pause Menu.   
     - working_version_2 branch:
         https://github.com/drothblatt/FinalProject2/tree/working_version_2
 
   - <b>Third & Last Working Version:</b>
+    - Features:    
     - master branch
         https://github.com/drothblatt/FinalProject2
 
