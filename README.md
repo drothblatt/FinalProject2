@@ -30,11 +30,11 @@ Goals / Plan
 Dev Log
 =======
   
-  <b>5/25: </b>
+<b>5/25: </b>
     - Basic Setup: pacman_interface.pde, Pacman.pde, Ghost.pde all established with minor aspects. 
     - Playing with Key methods for Pacman movement. 
   
-  <b>5/27:  </b>
+<b>5/27:  </b>
     - More w/ Framework: Added blank pacman map (map.jpg) for our background. Made gridlines (31x28 w/ each square being 20x20       pixels) in order to allow us to work with nodes. 
     - Established Dot.pde to make dots. Played with dot placement and setup. 
     - Played with Key methods for Pacman movement. 
@@ -43,19 +43,19 @@ Dev Log
     - NodeMap.pde written to scan the grid.txt file and establish nodes (buggy)
     - Node.pde written; basis of our rail-system - vital for pacman/ghosts movement. 
   
-  <b>5/28: </b>
+<b>5/28: </b>
     - Pacman animation completed. 
     - Progress working with Nodes.
   
-  <b>5/29: </b> 
+<b>5/29: </b> 
     - Complete NodeGrid issues. 
     - Nodes made (contains right, left, up, and down node references, x and y coordinates, accessor and mutator methods,             toString) thx to now working NodeGrid.pde file 
   
-  <b>5/30:</b>
+<b>5/30:</b>
     - Checked the Nodes. 
     - Planned next steps. 
   
-  <b>5/31:</b>
+<b>5/31:</b>
   - Got rid of Dot Class, made Dots a characteristic within Nodes, functional. 
       - hasDot and hasBigDot booleans
       - Established BigDots (worth extra points, makes ghosts eatable)
@@ -66,7 +66,7 @@ Dev Log
       - Pacman’s mouth stays open when hits a wall. 
       - Pacman now a circle at beginning as it should be. 
   
-  <b>6/1:</b>
+<b>6/1:</b>
     - Pacman animation improved:
         - Pacman’s mouth stays open when hits a wall (for a short while we messed it up, but it’s good again now)
         - Point system implemented. 
@@ -75,65 +75,65 @@ Dev Log
     - Altered dot placement on map so that it looks more like original. 
     - Played with sound (opening song, waka-waka).
   
-  <b>6/2: </b>
+<b>6/2: </b>
     - Overall formatting improvements. 
     - Decided to follow Pacman more closely and remove the extraneous dots in the center and pathway for teleportation. 
-    - Attempted to fix error where, when Pacman teleports, it leaves behind a dot that must be eaten by going back (still working     on it).
+    - Attempted to fix error where, when Pacman teleports, it leaves behind a dot that must be eaten by going back (still            working on it).
   
-  <b>6/3: </b>
+<b>6/3: </b>
     - Worked more on sound. Struggled. 
     - Started work on the ghosts 
         - Basic skeletons of what we need were made today
         - Blinky, Inky, Pinky, Clyde (why break the rhyme?) all extend Ghost class
     
-  <b>6/4: </b>
+<b>6/4: </b>
     - Discussed over what we should do for the ghost movement
       - No clear, solid ideas presented   
   
-  <b>6/5: </b>
+<b>6/5: </b>
     - Consulted Mr.K briefly in class to clarify a few things
       - Ideas became clearer 
         - Incl. plan for speeding up the game (removing grid lines, etc.)
     - Outlined next steps. 
   
-  <b>6/6: </b>
+<b>6/6: </b>
     - Worked on ghost movement, each of us tried to implement our own ghetto algorithms for ghost movement. No success. Nothing      worth committing. 
   
-  <b>6/7: </b>
+<b>6/7: </b>
     - Pause menu established, functional.
     - Failed attempt at sound.
     - Very scary and disgusting violin sounds when trying to implement sound.
     - More work with ghosts.
   
-  <b>6/8: </b>
+<b>6/8: </b>
     - Big catastrophe: tons of merge errors day of presentation.
   
-  <b>6/9: </b>
+<b>6/9: </b>
     - Errors found were fixed with good merge.
     - Pacman can eat the dots even before the dot reaches the center of pacman.
   
-  <b>6/10:</b>
+<b>6/10:</b>
     - Ghosts actually move on the grid now instead of moving on an invisible one and now lies with the pacman (although only         basic movement complete).
     - Ghosts can now kill the pacman - lives updated as you would expect/want. 
   
-  <b>6/11:</b>
+<b>6/11:</b>
     - Working on ghost movement. 
     - “Ghetto” versions working; ghosts wobble back and forth.
   
-  <b>6/12:</b>
+<b>6/12:</b>
     - Started doing maze solver by copy pasting.
       - Decided not to do so and wrote maze solver from scratch using MyDeque.
   
-  <b>6/13:</b>
+<b>6/13:</b>
     - Worked on a type of maze solver using A star but results in white screen and bugs.
     - Menus made (start menu, end menu, new framework).
   
-  <b>6/14:</b>
+<b>6/14:</b>
     - After giving up on maze solver, we used poor movement algorithms to move ghosts.
     - Worked on ghost movement and was able to get some of them working with bugs.
     - Ghost sprites implemented (eyes move, etc) - pretty cool actually. 
   
-  <b>6/15:</b>
+<b>6/15:</b>
     - Finished the rest of the ghost movement because “we are the three code wizzies” - Gary
     - We completed the long and hard task of recreating a bootlegged version of our type of pacman.
     - We have one sound (two if you reach the end, which is no easy task).
