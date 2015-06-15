@@ -269,6 +269,7 @@ public class Inky extends Ghost {
         }
       }
       catch(Exception e) {
+        dir = 0;
       }
     }
     if (x == 30 && y == 310) {
@@ -390,3 +391,4 @@ public class Pinky extends Ghost {
     }
   }
 }
+
