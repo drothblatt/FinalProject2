@@ -200,9 +200,5 @@ class Pacman {
   public int getDotsEaten(){
     return dotseaten; 
   }
-  
-  public float getDir() {
-    return dir;
-  }
 }
 

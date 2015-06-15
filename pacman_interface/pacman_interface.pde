@@ -28,7 +28,7 @@ void setup() {
   ghosts = new Ghost[4];
   ghosts[0] = new Blinky( 290, 250, pacman, nodeMap );
   ghosts[1] = new Clyde ( 330, 310, pacman, nodeMap );
-  ghosts[2] = new Inky ( 250, 310, pacman, nodeMap );
+  ghosts[2] = new Inky ( 250, 310, pacman, nodeMap, ghosts[0] );
   ghosts[3] = new Pinky ( 290, 310, pacman, nodeMap );
   minim = new Minim(this);
   sound.loadSounds(minim);
@@ -36,6 +36,7 @@ void setup() {
   frameRate(40);
   fill(0);
   stroke(255);
+  /*
   for (int i = 20; i <= 580; i += 20) { // vertically
     line(i, 20, i, 640);
   }
@@ -43,6 +44,7 @@ void setup() {
   for (int j = 20; j <= 640; j += 20) { // horizontally
     line(20, j, 580, j);
   }
+  */
 }
 
 
@@ -78,7 +80,7 @@ void draw() {
     pacman.move();
     for ( Ghost g : ghosts ) {
       g.updateCurrentNode();
-      g.move(pacman);
+      g.move();
     }
     /*
       if ( moves % 8 == 0) {
