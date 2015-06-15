@@ -7,6 +7,9 @@ abstract class Ghost {
   Node currNode, nextNode;
   float dir = 0;
   int should = 0;
+  
+  PImage gSprites;
+  
   private static final float UP =  3*HALF_PI;
   private static final float DOWN =  HALF_PI;
   private static final float LEFT =  PI;
@@ -21,6 +24,7 @@ abstract class Ghost {
     this.c = c;
     pacman = pm;
     nodeMap = nm;
+    gSprites = loadImage("data/sprites.png");
     currNode = nodeMap.nodeGrid[(int)((y-30)/20)][(int)((x-30)/20)];
   }
 
@@ -28,7 +32,7 @@ abstract class Ghost {
 
   public void draw() {
     fill(c);
-    ellipse ( x, y, 32, 32 );
+    //ellipse ( x, y, 32, 32 );
   }
 
   public float getX() {
@@ -104,6 +108,20 @@ public class Blinky extends Ghost {
   public Blinky(float x, float y, Pacman pm, NodeMap nm) {
     super(x, y, color(255, 0, 0), pm, nm );
   } 
+
+  void draw(){
+    if (dir == UP){
+      copy(gSprites, 2, 1, 14, 14, (int)x-15, (int)y-15, 32, 32);
+    } else if (dir == DOWN){
+      copy(gSprites, 42, 1, 14, 14, (int)x-15, (int)y-15, 32, 32);
+    } else if (dir == LEFT){
+      copy(gSprites, 82, 1, 14, 14, (int)x-15, (int)y-15, 32, 32);
+    } else if (dir == RIGHT){
+      copy(gSprites, 122, 1, 14, 14, (int)x-15, (int)y-15, 32, 32);
+    }
+    
+    
+  }
 
   public void move() {
     MazeSolver m = new MazeSolver(nodeMap.strGrid, currNode, pacman.currNode);

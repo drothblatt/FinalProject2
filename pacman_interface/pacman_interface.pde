@@ -36,6 +36,7 @@ void setup() {
   frameRate(40);
   fill(0);
   stroke(255);
+  /*
   for (int i = 20; i <= 580; i += 20) { // vertically
     line(i, 20, i, 640);
   }
@@ -43,6 +44,7 @@ void setup() {
   for (int j = 20; j <= 640; j += 20) { // horizontally
     line(20, j, 580, j);
   }
+  */
 }
 
 
