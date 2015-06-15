@@ -8,7 +8,23 @@ PacMEN
 
 Members
 =======
-David Rothblatt, Elias Saric, Gary Zhu
+David Rothblatt, Elias Saric, Gary Zhu 
+
+
+Goals / Plan 
+=======
+
+  - Make a pacman map that looks very similar to the original with the blue borders marking the walls and the white dots. (√)
+  - Create a Pacman that (eventually) moves along the grid (the end user will not actually see the grid). Pacman should not be     able to pass through certain parts of the grid (i.e. walls). Pacman’s mouth should also be animated.  (√)
+  - Implement a grid system. This will probably be done by using a 2-D array that has each element corresponding to a specific     square of pixel coordinates.	(√)
+  - All walls should be in the 	same place as in the original. The player should be able to teleport 	to the other side of the     level by going through the openings in the 	left and right portions of the level.	(√)
+  - Add dots to the game. There is one dot per tile on every tile Pacman can move 	at the beginning of the game. When Pacman      passes over a tile with a 	pellet, he “eats” the add, removing it from the game and 	adding 10 points to the player’s          score. We also want to implement bigger dots, worth 50 points. (√)
+  - Add ghosts to the game. Each ghost has a unique AI. One ghost will directly pursue Pacman, another will try to cut Pacman      off, another will move 	randomly and so forth. If Pacman touches a ghost, a life is lost. (<i>somewhat - ghost movement is     faulty and not identical to the original </i>)
+  - Keep track of and display the score and number of lives of the Pacman (√)
+  - Give the big Dots the ability to change the ghosts’ state from predator to prey allowing Pacman to “eat” the ghosts upon       contact instead of being “eaten.”	(x) 
+  - Add sound effects, fruit, and other minor features. (<i>some sound included</i>) 
+  - The original high score/ extra lives/ fruits eaten all in the same place. (x) 
+
 
 
 Dev Log
