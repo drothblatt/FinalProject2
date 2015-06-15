@@ -153,7 +153,7 @@ How to Access Our Project?
     - working_version_2 branch:
         https://github.com/drothblatt/FinalProject2/tree/working_version_2
 
-  - <b>Third & Last Working Version:</b>
+  - <b>Third Working Version:</b>
     - Features: Glitchy, Awkward Ghost Movement; Some Sound; Start/End Menus    
     - master branch
         https://github.com/drothblatt/FinalProject2
