@@ -5,7 +5,8 @@ abstract class Ghost {
   Pacman pacman;
   NodeMap nodeMap;
   Node currNode, nextNode;
-  int dir = 0;
+  float dir = 0;
+  int should = 0;
   private static final float UP =  3*HALF_PI;
   private static final float DOWN =  HALF_PI;
   private static final float LEFT =  PI;
@@ -45,7 +46,7 @@ abstract class Ghost {
       }
     }
   }
-  
+
   public float square(float i) {
     return i*i;
   }
@@ -56,6 +57,45 @@ abstract class Ghost {
 
   public float dist2(float x1, float x2, float y1, float y2) {
     return square(x1-x2)+square(y1-y2);
+  }
+
+  public void jump() {
+    x = 290;
+    y = 250;
+  }
+
+  public Node closest() {
+    float leftDist = (float)Integer.MAX_VALUE;
+    float rightDist = (float)Integer.MAX_VALUE;
+    float upDist = (float)Integer.MAX_VALUE;
+    float downDist = (float)Integer.MAX_VALUE;
+    if (currNode.getLeft() != null) {
+      leftDist = dist2(pacman.getX(), (float)currNode.getLeft().getX(), pacman.getY(), (float)currNode.getLeft().getY());
+    }
+    if (currNode.getRight() != null) {
+      rightDist = dist2(pacman.getX(), (float)currNode.getRight().getX(), pacman.getY(), (float)currNode.getRight().getY());
+    }
+    if (currNode.getUp() != null) {
+      upDist = dist2(pacman.getX(), (float)currNode.getUp().getX(), pacman.getY(), (float)currNode.getUp().getY());
+    }
+    if (currNode.getDown() != null) {
+      downDist = dist2(pacman.getX(), (float)currNode.getDown().getX(), pacman.getY(), (float)currNode.getDown().getY());
+    }
+    float closestDist = Math.min(Math.min(leftDist, rightDist), Math.min(upDist, downDist));
+
+    if (leftDist == closestDist) {
+      return currNode.getLeft();
+    }
+    if (rightDist == closestDist) {
+      return currNode.getRight();
+    }
+    if (upDist == closestDist) {
+      return currNode.getUp();
+    }
+    if (downDist == closestDist) {
+      return currNode.getDown();
+    }
+    return null;
   }
 }
 
@@ -105,40 +145,6 @@ public class Blinky extends Ghost {
       x = x + 2.5;
     }
   }
-
-  public Node closest() {
-    float leftDist = (float)Integer.MAX_VALUE;
-    float rightDist = (float)Integer.MAX_VALUE;
-    float upDist = (float)Integer.MAX_VALUE;
-    float downDist = (float)Integer.MAX_VALUE;
-    if (currNode.getLeft() != null) {
-      leftDist = dist2(pacman.getX(), (float)currNode.getLeft().getX(), pacman.getY(), (float)currNode.getLeft().getY());
-    }
-    if (currNode.getRight() != null) {
-      rightDist = dist2(pacman.getX(), (float)currNode.getRight().getX(), pacman.getY(), (float)currNode.getRight().getY());
-    }
-    if (currNode.getUp() != null) {
-      upDist = dist2(pacman.getX(), (float)currNode.getUp().getX(), pacman.getY(), (float)currNode.getUp().getY());
-    }
-    if (currNode.getDown() != null) {
-      downDist = dist2(pacman.getX(), (float)currNode.getDown().getX(), pacman.getY(), (float)currNode.getDown().getY());
-    }
-    float closestDist = Math.min(Math.min(leftDist, rightDist), Math.min(upDist, downDist));
-
-    if (leftDist == closestDist) {
-      return currNode.getLeft();
-    }
-    if (rightDist == closestDist) {
-      return currNode.getRight();
-    }
-    if (upDist == closestDist) {
-      return currNode.getUp();
-    }
-    if (downDist == closestDist) {
-      return currNode.getDown();
-    }
-    return null;
-  }
 }
 
 
@@ -149,6 +155,10 @@ public class Inky extends Ghost {
   } 
 
   public void move() {
+    if ( pacman.getDotsEaten()>=30 && should == 0 ) {
+      jump();
+      should ++;
+    }
     kill();
   }
 }
@@ -160,6 +170,10 @@ public class Clyde extends Ghost {
   } 
 
   public void move() {
+    if ( nodeMap.totDots - pacman.getDotsEaten() <= nodeMap.totDots/3 && should == 0 ){
+      jump();
+      should ++; 
+    }
     kill();
   }
 }
@@ -171,6 +185,10 @@ public class Pinky extends Ghost {
   } 
 
   public void move() {
+    if ( should == 0 ){
+      jump();
+      should ++;
+    }
     kill();
   }
 }

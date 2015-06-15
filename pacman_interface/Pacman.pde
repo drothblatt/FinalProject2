@@ -19,6 +19,7 @@ class Pacman {
   private static final float RIGHT =  TWO_PI;
   
   int framecount = 40;
+  int dotseaten = 0;
 
   public Pacman(float x, float y, NodeMap nodeMap) {
     r = 16;
@@ -134,6 +135,7 @@ class Pacman {
       if (n.hasDot()) {
         score += n.getVal();
         n.setDot(false);
+        dotseaten++;
       }
     }
   }
@@ -193,6 +195,10 @@ class Pacman {
 
   public void updateCurrentNode() {
     currNode = nodeMap.nodeGrid[(int)y/20-1][(int)x/20-1];
+  }
+  
+  public int getDotsEaten(){
+    return dotseaten; 
   }
 }
 
