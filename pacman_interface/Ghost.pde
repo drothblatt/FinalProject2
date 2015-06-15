@@ -7,9 +7,9 @@ abstract class Ghost {
   Node currNode, nextNode;
   float dir = 0;
   int should = 0;
-  
+
   PImage gSprites;
-  
+
   private static final float UP =  3*HALF_PI;
   private static final float DOWN =  HALF_PI;
   private static final float LEFT =  PI;
@@ -143,22 +143,20 @@ public class Blinky extends Ghost {
     super(x, y, color(255, 0, 0), pm, nm );
   } 
 
-  void draw(){
-    if (dir == UP){
+  void draw() {
+    if (dir == UP) {
       copy(gSprites, 2, 1, 14, 14, (int)x-15, (int)y-15, 32, 32);
-    } else if (dir == DOWN){
+    } else if (dir == DOWN) {
       copy(gSprites, 42, 1, 14, 14, (int)x-15, (int)y-15, 32, 32);
-    } else if (dir == LEFT){
+    } else if (dir == LEFT) {
       copy(gSprites, 82, 1, 14, 14, (int)x-15, (int)y-15, 32, 32);
-    } else if (dir == RIGHT){
+    } else if (dir == RIGHT) {
       copy(gSprites, 122, 1, 14, 14, (int)x-15, (int)y-15, 32, 32);
     }
-    
-    
   }
 
   public void move() {
-    MazeSolver m = new MazeSolver(nodeMap.strGrid, currNode, pacman.currNode);
+    //MazeSolver m = new MazeSolver(nodeMap.strGrid, currNode, pacman.currNode);
     //System.out.println(currNode);
     //System.out.println(pacman.currNode);
     //m.solve();
@@ -206,19 +204,19 @@ public class Inky extends Ghost {
     super(x, y, color(0, 0, 255), pm, nm );
     blinky = blink;
   } 
-  
-  void draw(){
-    if (dir == UP){
+
+  void draw() {
+    if (dir == UP) {
       copy(gSprites, 2, 41, 14, 14, (int)x-15, (int)y-15, 32, 32);
-    } else if (dir == DOWN){
+    } else if (dir == DOWN) {
       copy(gSprites, 42, 41, 14, 14, (int)x-15, (int)y-15, 32, 32);
-    } else if (dir == LEFT){
+    } else if (dir == LEFT) {
       copy(gSprites, 82, 41, 14, 14, (int)x-15, (int)y-15, 32, 32);
-    } else if (dir == RIGHT){
+    } else if (dir == RIGHT) {
       copy(gSprites, 122, 41, 14, 14, (int)x-15, (int)y-15, 32, 32);
     }
   }
-    
+
 
   public void move() {
     if ( pacman.getDotsEaten()>=30 && should == 0 ) {
@@ -231,6 +229,7 @@ public class Inky extends Ghost {
     float newY;
     if ( x == currNode.getX() && y == currNode.getY() && should > 0) {
       try {
+        //System.out.println(pacman.dir);
         if ( pacman.dir == UP ) {
           newX = 2 * pacman.getX() - blinky.getX();
           newY = 2 * (pacman.currNode.getUp().getUp().getY()) - blinky.getY();
@@ -295,15 +294,15 @@ public class Clyde extends Ghost {
   public Clyde(float x, float y, Pacman pm, NodeMap nm) {
     super(x, y, color(255, 128, 0), pm, nm );
   } 
-  
-  void draw(){
-    if (dir == UP){
+
+  void draw() {
+    if (dir == UP) {
       copy(gSprites, 2, 61, 14, 14, (int)x-15, (int)y-15, 32, 32);
-    } else if (dir == DOWN){
+    } else if (dir == DOWN) {
       copy(gSprites, 42, 61, 14, 14, (int)x-15, (int)y-15, 32, 32);
-    } else if (dir == LEFT){
+    } else if (dir == LEFT) {
       copy(gSprites, 82, 61, 14, 14, (int)x-15, (int)y-15, 32, 32);
-    } else if (dir == RIGHT){
+    } else if (dir == RIGHT) {
       copy(gSprites, 122, 61, 14, 14, (int)x-15, (int)y-15, 32, 32);
     }
   }
@@ -322,15 +321,15 @@ public class Pinky extends Ghost {
   public Pinky(float x, float y, Pacman pm, NodeMap nm) {
     super(x, y, color(255, 200, 200), pm, nm );
   } 
-  
-  void draw(){
-    if (dir == UP){
+
+  void draw() {
+    if (dir == UP) {
       copy(gSprites, 2, 21, 14, 14, (int)x-15, (int)y-15, 32, 32);
-    } else if (dir == DOWN){
+    } else if (dir == DOWN) {
       copy(gSprites, 42, 21, 14, 14, (int)x-15, (int)y-15, 32, 32);
-    } else if (dir == LEFT){
+    } else if (dir == LEFT) {
       copy(gSprites, 82, 21, 14, 14, (int)x-15, (int)y-15, 32, 32);
-    } else if (dir == RIGHT){
+    } else if (dir == RIGHT) {
       copy(gSprites, 122, 21, 14, 14, (int)x-15, (int)y-15, 32, 32);
     }
   }
@@ -341,6 +340,52 @@ public class Pinky extends Ghost {
       should ++;
     }
     kill();
+    float xmod = 0.0;
+    float ymod = 0.0;
+    System.out.println(pacman.dir);
+    if (pacman.dir == LEFT) {
+      xmod = -40.0;
+    }
+    if (pacman.dir == RIGHT) {
+      xmod = 40.0;
+    }
+    if (pacman.dir == UP) {
+      xmod = -40.0;
+    }
+    if (pacman.dir == DOWN) {
+      xmod = 40.0;
+    }
+    if (x == currNode.getX() && y == currNode.getY()) {
+      Node next = closest2(pacman.getX()+xmod, pacman.getY()+ymod);//m.nextStep();
+      if ( currNode.hasUp()) {
+        if (next.getX() == currNode.getUp().getX() && next.getY() == currNode.getUp().getY()) {
+          dir = UP;
+        }
+      }
+      if ( currNode.hasDown()) {
+        if (next.getX() == currNode.getDown().getX() && next.getY() == currNode.getDown().getY()) {
+          dir = DOWN;
+        }
+      }
+      if ( currNode.hasRight()) {
+        if (next.getX() == currNode.getRight().getX() && next.getY() == currNode.getRight().getY()) {
+          dir = RIGHT;
+        }
+      }
+      if ( currNode.hasLeft()) {
+        if (next.getX() == currNode.getLeft().getX() && next.getY() == currNode.getLeft().getY()) {
+          dir = LEFT;
+        }
+      }
+    }
+    if ( dir == UP ) {
+      y = y - 2.5;
+    } else if ( dir == DOWN ) {
+      y = y + 2.5;
+    } else if ( dir == LEFT ) {
+      x = x - 2.5;
+    } else if ( dir == RIGHT ) {
+      x = x + 2.5;
+    }
   }
 }
-
