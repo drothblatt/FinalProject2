@@ -28,7 +28,7 @@ void setup() {
   ghosts = new Ghost[4];
   ghosts[0] = new Blinky( 290, 250, pacman, nodeMap );
   ghosts[1] = new Clyde ( 330, 310, pacman, nodeMap );
-  ghosts[2] = new Inky ( 250, 310, pacman, nodeMap );
+  ghosts[2] = new Inky ( 250, 310, pacman, nodeMap, ghosts[0] );
   ghosts[3] = new Pinky ( 290, 310, pacman, nodeMap );
   minim = new Minim(this);
   sound.loadSounds(minim);

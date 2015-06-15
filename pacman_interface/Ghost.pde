@@ -97,6 +97,40 @@ abstract class Ghost {
     }
     return null;
   }
+
+  public Node closest2(float x, float y) {
+    float leftDist = (float)Integer.MAX_VALUE;
+    float rightDist = (float)Integer.MAX_VALUE;
+    float upDist = (float)Integer.MAX_VALUE;
+    float downDist = (float)Integer.MAX_VALUE;
+    if (currNode.getLeft() != null) {
+      leftDist = dist2(x, (float)currNode.getLeft().getX(), y, (float)currNode.getLeft().getY());
+    }
+    if (currNode.getRight() != null) {
+      rightDist = dist2(x, (float)currNode.getRight().getX(), y, (float)currNode.getRight().getY());
+    }
+    if (currNode.getUp() != null) {
+      upDist = dist2(x, (float)currNode.getUp().getX(), y, (float)currNode.getUp().getY());
+    }
+    if (currNode.getDown() != null) {
+      downDist = dist2(x, (float)currNode.getDown().getX(), y, (float)currNode.getDown().getY());
+    }
+    float closestDist = Math.min(Math.min(leftDist, rightDist), Math.min(upDist, downDist));
+
+    if (leftDist == closestDist) {
+      return currNode.getLeft();
+    }
+    if (rightDist == closestDist) {
+      return currNode.getRight();
+    }
+    if (upDist == closestDist) {
+      return currNode.getUp();
+    }
+    if (downDist == closestDist) {
+      return currNode.getDown();
+    }
+    return null;
+  }
 }
 
 public class Blinky extends Ghost {
@@ -149,9 +183,10 @@ public class Blinky extends Ghost {
 
 
 public class Inky extends Ghost {
-
-  public Inky(float x, float y, Pacman pm, NodeMap nm) {
+  Ghost blinky;
+  public Inky(float x, float y, Pacman pm, NodeMap nm, Ghost blink) {
     super(x, y, color(0, 0, 255), pm, nm );
+    blinky = blink;
   } 
 
   public void move() {
@@ -160,8 +195,69 @@ public class Inky extends Ghost {
       should ++;
     }
     kill();
+    Node next = null;
+    float newX; 
+    float newY;
+    if ( x == currNode.getX() && y == currNode.getY() && should > 0) {
+      try {
+        if ( pacman.dir == UP ) {
+          newX = 2 * pacman.getX() - blinky.getX();
+          newY = 2 * (pacman.currNode.getUp().getUp().getY()) - blinky.getY();
+          next = closest2(newX, newY);
+        } else if ( pacman.dir == DOWN ) {
+          newX = 2 * pacman.getX() - blinky.getX();
+          newY = 2 * (pacman.currNode.getDown().getDown().getY()) - blinky.getY();
+          next = closest2(newX, newY);
+        } else if ( pacman.dir == LEFT ) {
+          newX = 2 * ( pacman.currNode.getLeft().getLeft().getX()) - blinky.getX();
+          newY = 2 * pacman.getY() - blinky.getY();
+          next = closest2(newX, newY);
+        } else {
+          newX = 2 * ( pacman.currNode.getRight().getRight().getX()) - blinky.getX();
+          newY = 2 * pacman.getY() - blinky.getY();
+          next = closest2(newX, newY);
+        }
+        if ( currNode.hasUp()) {
+          if (next.getX() == currNode.getUp().getX() && next.getY() == currNode.getUp().getY()) {
+            dir = UP;
+          }
+        }
+        if ( currNode.hasDown()) {
+          if (next.getX() == currNode.getDown().getX() && next.getY() == currNode.getDown().getY()) {
+            dir = DOWN;
+          }
+        }
+        if ( currNode.hasRight()) {
+          if (next.getX() == currNode.getRight().getX() && next.getY() == currNode.getRight().getY()) {
+            dir = RIGHT;
+          }
+        }
+        if ( currNode.hasLeft()) {
+          if (next.getX() == currNode.getLeft().getX() && next.getY() == currNode.getLeft().getY()) {
+            dir = LEFT;
+          }
+        }
+      }
+      catch(Exception e) {
+      }
+    }
+    if (x == 30 && y == 310) {
+      x = 570;
+    } else if (x == 570 && y == 310) {
+      x = 30;
+    }
+    if ( dir == UP ) {
+      y = y - 2.5;
+    } else if ( dir == DOWN ) {
+      y = y + 2.5;
+    } else if ( dir == LEFT ) {
+      x = x - 2.5;
+    } else if ( dir == RIGHT ) {
+      x = x + 2.5;
+    }
   }
 }
+
 
 public class Clyde extends Ghost {
 
@@ -170,9 +266,9 @@ public class Clyde extends Ghost {
   } 
 
   public void move() {
-    if ( nodeMap.totDots - pacman.getDotsEaten() <= nodeMap.totDots/3 && should == 0 ){
+    if ( nodeMap.totDots - pacman.getDotsEaten() <= nodeMap.totDots/3 && should == 0 ) {
       jump();
-      should ++; 
+      should ++;
     }
     kill();
   }
@@ -185,7 +281,7 @@ public class Pinky extends Ghost {
   } 
 
   public void move() {
-    if ( should == 0 ){
+    if ( should == 0 ) {
       jump();
       should ++;
     }
