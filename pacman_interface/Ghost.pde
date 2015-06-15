@@ -321,11 +321,67 @@ public class Clyde extends Ghost {
   }
 
   public void move() {
-    if ( nodeMap.totDots - pacman.getDotsEaten() <= nodeMap.totDots/3 && should == 0 ) {
+    if ( /*nodeMap.totDots - pacman.getDotsEaten() <= nodeMap.totDots/2 &&*/ should == 0 ) {
       jump();
       should ++;
     }
     kill();
+    if (Math.abs(x - pacman.getX()) + Math.abs(y - pacman.getY()) > 200) {
+      try {
+        if (x == currNode.getX() && y == currNode.getY() && should > 0) {
+          Node next = closest();//m.nextStep();
+          if ( currNode.hasUp()) {
+            if (next.getX() == currNode.getUp().getX() && next.getY() == currNode.getUp().getY()) {
+              dir = UP;
+            }
+          }
+          if ( currNode.hasDown()) {
+            if (next.getX() == currNode.getDown().getX() && next.getY() == currNode.getDown().getY()) {
+              dir = DOWN;
+            }
+          }
+          if ( currNode.hasRight()) {
+            if (next.getX() == currNode.getRight().getX() && next.getY() == currNode.getRight().getY()) {
+              dir = RIGHT;
+            }
+          }
+          if ( currNode.hasLeft()) {
+            if (next.getX() == currNode.getLeft().getX() && next.getY() == currNode.getLeft().getY()) {
+              dir = LEFT;
+            }
+          }
+        } else if (currNode.getX() == x && currNode.getY() == y && dir == UP || dir == DOWN || dir == 0) {
+          if (currNode.hasLeft()) {
+            dir = LEFT;
+          } else if (currNode.hasRight()) {
+            dir = RIGHT;
+          }
+        } else if (currNode.getX() == x && currNode.getY() == y && dir == LEFT || dir == RIGHT || dir == 0) {
+          if (currNode.hasLeft()) {
+            dir = DOWN;
+          } else if (currNode.hasRight()) {
+            dir = UP;
+          }
+        }
+      }
+      catch ( Exception e) {
+        dir = 0;
+      }
+    }
+    if (x == 30 && y == 310) {
+      x = 570;
+    } else if (x == 570 && y == 310) {
+      x = 30;
+    }
+    if ( dir == UP ) {
+      y = y - 2.5;
+    } else if ( dir == DOWN ) {
+      y = y + 2.5;
+    } else if ( dir == LEFT ) {
+      x = x - 2.5;
+    } else if ( dir == RIGHT ) {
+      x = x + 2.5;
+    }
   }
 }
 
@@ -355,7 +411,6 @@ public class Pinky extends Ghost {
     kill();
     float xmod = 0.0;
     float ymod = 0.0;
-    System.out.println(pacman.dir);
     if (pacman.dir == LEFT) {
       xmod = -40.0;
     }
