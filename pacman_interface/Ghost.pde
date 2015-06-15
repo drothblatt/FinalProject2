@@ -47,7 +47,19 @@ abstract class Ghost {
     for ( int i = -16; i <= 16; i++) {
       if ( square(pacman.getX()-(x+i))+square(pacman.getY()-(y+i))<=square(16)) {
         pacman.die();
+        x = 290;
+        y = 250;
+        wait(3000);
       }
+    }
+
+  }
+  
+  public void wait(int millis){
+    try {
+        Thread.sleep(millis);
+    }
+    catch (InterruptedException e) {
     }
   }
 

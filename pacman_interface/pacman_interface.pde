@@ -89,9 +89,29 @@ void draw() {
      } */
     pacman.draw();
 
-    if (pacman.getLives() <= 0) {
+  
+    if (pacman.getLives() + 1 <= 0) {
       MODE = END_MENU;
     }
+    
+    
+    //print(nodeMap.totDots);
+    //print("getDotsEaten" + pacman.getDotsEaten());
+
+    if (nodeMap.totDots == pacman.getDotsEaten() ){ // repopulate 
+        System.out.println("getDotsEaten" + pacman.getDotsEaten());
+        pacman.setDotsEaten(0); 
+        for ( int i = 0; i < nodeMap.nodeGrid.length; i++){
+          for ( int j = 0; j < nodeMap.nodeGrid[0].length; j++){
+            Node n = nodeMap.nodeGrid[i][j];
+            if (n !=null){
+              n.setDot(true);
+              n.dotVal *= 2;         
+            }
+        }
+      }
+    }
+    
     //theGrid();
 
     // GRID //
