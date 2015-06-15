@@ -140,7 +140,7 @@ Dev Log
 
 How to Access Our Project?
 =========
-  For all versions just use processing to open the pacman_interface.pde file in the pacman_interface folder located in our       FinalProject2 repo (nothing needs to be changed or anything like that). 
+  For all versions just use processing to open FinalProject2/pacman_interface/pacman_interface.pde the pacman_interface.pde      (nothing needs to be changed or anything like that). 
 
   - <b>First Working Version: </b>
     - Features: Setup; Pacman Movement & Anmiation & Teleportation; Dots (although they aren't eatable just yet). 
