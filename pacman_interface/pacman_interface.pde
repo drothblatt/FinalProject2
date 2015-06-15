@@ -78,7 +78,7 @@ void draw() {
     pacman.move();
     for ( Ghost g : ghosts ) {
       g.updateCurrentNode();
-      g.move();
+      g.move(pacman);
     }
     /*
       if ( moves % 8 == 0) {
