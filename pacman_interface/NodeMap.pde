@@ -7,16 +7,16 @@ class NodeMap {
   String[][] strGrid;
   String[] lines;
   int totDots=0;
-  
+
   public NodeMap() {
     strGrid = new String[31][28];
     createStringGrid();
     createNodeGrid();
-    for ( int i = 0; i < nodeGrid.length; i++){
-      for ( int j = 0; j < nodeGrid[0].length; j++){
-          if (nodeGrid[i][j]!=null){
-            totDots++; 
-          }
+    for ( int i = 0; i < nodeGrid.length; i++) {
+      for ( int j = 0; j < nodeGrid[0].length; j++) {
+        if (nodeGrid[i][j]!=null) {
+          totDots++;
+        }
       }
     }
   }

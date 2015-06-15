@@ -32,7 +32,6 @@ abstract class Ghost {
 
   public void draw() {
     fill(c);
-    //ellipse ( x, y, 32, 32 );
   }
 
   public float getX() {
@@ -156,14 +155,10 @@ public class Blinky extends Ghost {
   }
 
   public void move() {
-    //MazeSolver m = new MazeSolver(nodeMap.strGrid, currNode, pacman.currNode);
-    //System.out.println(currNode);
-    //System.out.println(pacman.currNode);
-    //m.solve();
     kill();
     //the first part is to find which node is closest to the pacman
     if (x == currNode.getX() && y == currNode.getY()) {
-      Node next = closest();//m.nextStep();
+      Node next = closest();
       if ( currNode.hasUp()) {
         if (next.getX() == currNode.getUp().getX() && next.getY() == currNode.getUp().getY()) {
           dir = UP;
@@ -229,7 +224,6 @@ public class Inky extends Ghost {
     float newY;
     if ( x == currNode.getX() && y == currNode.getY() && should > 0) {
       try {
-        //System.out.println(pacman.dir);
         if ( pacman.dir == UP ) {
           newX = 2 * pacman.getX() - blinky.getX();
           newY = 2 * (pacman.currNode.getUp().getUp().getY()) - blinky.getY();
@@ -309,7 +303,7 @@ public class Clyde extends Ghost {
   }
 
   public void move() {
-    if ( /*nodeMap.totDots - pacman.getDotsEaten() <= nodeMap.totDots/2 &&*/ should == 0 ) {
+    if ( nodeMap.totDots - pacman.getDotsEaten() <= nodeMap.totDots/2 && should == 0 ) {
       jump();
       should ++;
     }

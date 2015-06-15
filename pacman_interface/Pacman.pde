@@ -17,7 +17,7 @@ class Pacman {
   private static final float DOWN =  HALF_PI;
   private static final float LEFT =  PI;
   private static final float RIGHT =  TWO_PI;
-  
+
   int framecount = 40;
   int dotseaten = 0;
 
@@ -119,7 +119,7 @@ class Pacman {
     } else {
       dir = 0;
     }
-    if ( framecount%30 == 0 ){
+    if ( framecount%30 == 0 ) {
       Sound.play("Pacman Siren.mp3");
     }
     framecount++;
@@ -196,11 +196,11 @@ class Pacman {
   public void updateCurrentNode() {
     currNode = nodeMap.nodeGrid[(int)y/20-1][(int)x/20-1];
   }
-  
-  public int getDotsEaten(){
-    return dotseaten; 
+
+  public int getDotsEaten() {
+    return dotseaten;
   }
-  
+
   public float getDir() {
     return dir;
   }
